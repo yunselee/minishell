@@ -2,8 +2,5 @@
 
 void change_directory(const char* path)
 {
-	if (chdir(path) != 0)
-	{
-		
-	}
+	chdir(path);
 }

@@ -1,18 +1,7 @@
+#include <stdlib.h>
 #include "env_variable.h"
 
 #define MAX_ENV (1024)
-
-typedef struct s_env_variable
-{
-	const char	*key;
-	const char	*value;
-}				t_env_variable;
-
-typedef struct s_env_variable_list
-{
-	t_env_variable	list[MAX_ENV];
-	int				size;
-}				t_env_variable_list;
 
 static t_env_variable_list g_variables;
 
@@ -82,7 +71,7 @@ void remove_env_variable(const char* key)
 
 void destory_env_variable(void)
 {
-	int index;
+	int	index;
 
 	index = 0;
 	while (index < g_variables.size)
