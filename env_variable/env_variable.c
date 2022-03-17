@@ -1,8 +1,6 @@
 #include <stdlib.h>
 #include "env_variable.h"
 
-#define MAX_ENV (1024)
-
 static t_env_variable_list g_variables;
 
 static int index_of_env(const char* key)
@@ -12,7 +10,7 @@ static int index_of_env(const char* key)
 	index = 0;
 	while (index < g_variables.size)
 	{
-		if (ft_strcmp(key, g_variables.list[index]->key) == 0)
+		if (ft_strncmp(key, g_variables.list[index].key, MAX_KEY_LENGTH) == 0)
 		{
 			return (index);
 		}
@@ -30,7 +28,7 @@ const char* get_env_variable_or_null(const char* key)
 	{
 		return (NULL);
 	}
-	return (g_variables.list[index]->value);
+	return (g_variables.list[index].value);
 }
 
 void register_env_variable(const char* key, const char* value)
@@ -42,15 +40,13 @@ void register_env_variable(const char* key, const char* value)
 	if (index == -1)
 	{
 		new_env = &g_variables.list[g_variables.size++];
+		ft_strlcpy(new_env->key, key, MAX_KEY_LENGTH)
 	}
 	else
 	{
 		new_env = &g_variables.list[index];
-		free(env->key);
-		free(env->value)
 	}
-	new_env->key = key;
-	new_env->value = value;
+	ft_strlcpy(new_env->value, value, MAX_VALUE_LENGTH);
 }
 
 void remove_env_variable(const char* key)
@@ -59,25 +55,8 @@ void remove_env_variable(const char* key)
 	int				index;
 
 	index = index_of_env(key);
-	if (index == -1)
+	if (index != -1)
 	{
-		return;
-	}
-	del_env = &g_variables.list[index];
-	free(del_env->key);
-	free(del_env->value);
-	g_variables.list[index] = g_variables.list[--g_variables.size];
-}
-
-void destory_env_variable(void)
-{
-	int	index;
-
-	index = 0;
-	while (index < g_variables.size)
-	{
-		free(g_variables.list[index]->key);
-		free(g_variables.list[index]->value);
-		++index;
+		g_variables.list[index] = g_variables.list[--g_variables.size];
 	}
 }
