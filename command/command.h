@@ -7,6 +7,5 @@ void command_pwd(void);
 void command_export(void);
 void command_env(void);
 void command_unset(void);
-void command_exit(void);
 
 #endif /* COMMAND_H */
