@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Getcwd.c                                           :+:      :+:    :+:   */
+/*   getcwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 19:46:00 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/17 21:15:05 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/03/17 21:20:52 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@
 
 char	*_getcwd(char *buf, size_t size)
 {
-	char	*ret = getcwd(buf, size);
+	char	*ret;
 
+	ret = getcwd(buf, size);
 	if (ret == NULL)
 	{
 		printf("%s\n", strerror(errno));

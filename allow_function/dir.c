@@ -6,7 +6,7 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 19:46:06 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/17 21:14:44 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/03/17 21:21:01 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@
 
 DIR	*_opendir(const char *name)
 {
-	DIR	*ret = opendir(name);
+	DIR	*ret;
 
+	ret = opendir(name);
 	if (ret == NULL)
 	{
 		printf("%s\n", strerror(errno));
@@ -31,8 +32,9 @@ DIR	*_opendir(const char *name)
 
 struct dirent	*_readdir(DIR *dirp)
 {
-	struct dirent	*ret = readdir(dirp);
+	struct dirent	*ret;
 
+	ret = readdir(dirp);
 	if (ret == NULL)
 	{
 		printf("%s\n", strerror(errno));
