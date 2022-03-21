@@ -31,7 +31,7 @@ const char* get_env_variable_or_null(const char* key)
 	return (g_variables.list[index].value);
 }
 
-void register_env_variable(const char* key, const char* value)
+void register_env_variable(const char* key, const char* value_or_null)
 {
 	t_env_variable	*new_env;
 	int				index;
@@ -46,7 +46,14 @@ void register_env_variable(const char* key, const char* value)
 	{
 		new_env = &g_variables.list[index];
 	}
-	ft_strlcpy(new_env->value, value, MAX_VALUE_LENGTH);
+	if (value_or_null == NULL)
+	{
+		new_env->value[0] = '\0';
+	}
+	else
+	{
+		ft_strlcpy(new_env->value, value, MAX_VALUE_LENGTH);
+	}
 }
 
 void remove_env_variable(const char* key)
