@@ -40,7 +40,7 @@ void register_env_variable(const char* key, const char* value_or_null)
 	if (index == -1)
 	{
 		new_env = &g_variables.list[g_variables.size++];
-		ft_strlcpy(new_env->key, key, MAX_KEY_LENGTH)
+		ft_strlcpy(new_env->key, key, MAX_KEY_LENGTH);
 	}
 	else
 	{
@@ -66,4 +66,9 @@ void remove_env_variable(const char* key)
 	{
 		g_variables.list[index] = g_variables.list[--g_variables.size];
 	}
+}
+
+const t_env_variable_list	*get_all_env(void)
+{
+	return (&g_variables);
 }
