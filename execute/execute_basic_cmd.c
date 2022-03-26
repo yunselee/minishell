@@ -29,13 +29,14 @@ static void	execve_child_process(char **args)
 	p_env_path = ft_split(get_env_variable_or_null("PATH"), ':');
 	while (p_env_path[i] != NULL)
 	{
-		p_tmp = ft_strjoin(p_env_path[i], "\\");
+		p_tmp = ft_strjoin(p_env_path[i], "/");
 		p_cmd = ft_strjoin(p_tmp, args[0]);
 		_execve(p_cmd, args, p_envp);
 		_free(p_tmp);
 		_free(p_cmd);
 		i++;
 	}
+	_execve(args[0], args, p_envp);
 	printf("%s : command not found\n", args[0]);
 }
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Execve.c                                           :+:      :+:    :+:   */
+/*   execve.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 19:27:20 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/17 21:14:57 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/03/26 19:26:04 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	_execve(const char *pathname, char *const argv[], char *const envp[])
 
 	if (ret == -1)
 	{
-		printf("%s\n", strerror(errno));
-		exit(1);
+		//printf("%s\n", strerror(errno));
+		//	exit(1);
 	}
 	return (ret);
 }
