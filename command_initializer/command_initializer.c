@@ -13,7 +13,9 @@ static bool is_open_quot(const char *text)
 	p_text = text;
 	while (*p_text != '\0')
 	{
-		if (quot == 0 && (*p_text == '\"' || *p_text == '\''))
+		if (*p_text == '\\' && (*(p_text + 1) == '\"' || *(p_text + 1) == '\''))
+			p_text++;
+		else if (quot == 0 && (*p_text == '\"' || *p_text == '\''))
 			quot = *p_text;
 		else if (quot == *p_text)
 			quot = 0;
@@ -26,7 +28,7 @@ static bool is_open_quot(const char *text)
 
 static bool is_empty_line(const char* text)
 {
-	const char* p_text;
+	const char	*p_text;
 
 	p_text = text;
 	while (*p_text != '\0')
@@ -34,6 +36,33 @@ static bool is_empty_line(const char* text)
 		if (*p_text != ' ' && *p_text != '\t')
 			return (false);
 		p_text++;
+	}
+	return (true);
+}
+
+static bool is_valid_syntax(t_command *command)
+{
+	char	*token;
+	char	*next_token;
+	int		i;
+
+	i = 0;
+	while (i < command->num_token)
+	{
+		token = command->tokens[i];
+		if (*token == '>' || *token == '<' || *token == '|')
+		{
+			if (command->num_token <= i + 1)
+			{
+				return (false);
+			}
+			next_token = command->tokens[i + 1];
+			if (*next_token == '>' || *next_token == '<' || *next_token == '|')
+			{
+				return (false);
+			}
+		}
+		++i;
 	}
 	return (true);
 }
@@ -52,5 +81,10 @@ bool try_init_command(char *text, t_command *out_command)
 		return (false);
 	}
 	tokenize_command(text, out_command);
-	return true;
+	if (!is_valid_syntax(out_command))
+	{
+		printf("Invalide Syntax\n");
+		return (false);
+	}
+	return (true);
 }

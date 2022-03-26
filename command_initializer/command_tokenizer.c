@@ -2,7 +2,7 @@
 #include "command_initializer.h"
 #include "../libft/libft.h"
 
-static char* init_plain_command(char *text, t_command *out_command)
+static char *init_plain_command(char *text, t_command *out_command)
 {
 	char	*p_token;
 	char	*p_end;
@@ -16,7 +16,7 @@ static char* init_plain_command(char *text, t_command *out_command)
 	return (p_end - 1);
 }
 
-static char* init_redirection_command(char *text, t_command *out_command)
+static char *init_redirection_command(char *text, t_command *out_command)
 {
 	char	*p_token;
 	char	*p_end;
@@ -30,10 +30,10 @@ static char* init_redirection_command(char *text, t_command *out_command)
 	return (p_end - 1);
 }
 
-static char* init_single_quot_command(char* text, t_command *out_command)
+static char *init_single_quot_command(char *text, t_command *out_command)
 {
-	char* p_token;
-	char* p_end;
+	char	*p_token;
+	char	*p_end;
 
 	text++;
 	p_token = out_command->tokens[out_command->num_token++];
@@ -43,10 +43,10 @@ static char* init_single_quot_command(char* text, t_command *out_command)
 	return (p_end);
 }
 
-static char* init_double_quot_command(char *text, t_command *out_command)
+static char *init_double_quot_command(char *text, t_command *out_command)
 {
-	char* p_token;
-	char* p_end;
+	char	*p_token;
+	char	*p_end;
 
 	text++;
 	p_token = out_command->tokens[out_command->num_token++];
@@ -59,7 +59,7 @@ static char* init_double_quot_command(char *text, t_command *out_command)
 
 void tokenize_command(char *text, t_command *out_command)
 {
-	char *p_text;
+	char	*p_text;
 
 	p_text = text;
 	while (*p_text != '\0')
