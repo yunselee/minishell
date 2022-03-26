@@ -6,7 +6,7 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 14:39:24 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/26 17:23:23 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/03/26 19:08:26 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	builtin_pwd(void)
 		exit_code_set(EXIT_FAILURE);
 		return ;
 	}
-	printf("%s", pwd);
+	printf("%s\n", pwd);
 	_free((void *)pwd);
 	exit_code_set(EXIT_SUCCESS);
 }

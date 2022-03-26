@@ -89,3 +89,15 @@ static void print_command(t_command *command)
 gcc  -Wall -Werror -Wextra -I ./as_tree ./allow_function ./builtin ./command_initializer ./env_variable ./execute ./exit_code ./libft ./sig ./stdio_manager  -I ~/.brew/opt/readline/include -c main.c -o objects/main.o
 
 gcc  -Wall -Werror -Wextra -I ./includes -I ~/.brew/opt/readline/include -c ./srcs/main.c -o objects/main.o
+
+Prompt :echo <3
+zsh: segmentation fault  ./minishell
+
+
+Prompt :ls
+No such file or directory
+
+
+echo O
+env O
+pwd O

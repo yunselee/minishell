@@ -15,7 +15,7 @@ void	stdio_back_up(void)
 
 	back_up_fd = get_back_up_fd();
 	back_up_fd[0] = _dup(STDIN_FILENO);
-	back_up_fd[2] = _dup(STDOUT_FILENO);
+	back_up_fd[1] = _dup(STDOUT_FILENO);
 }
 
 void	stdio_recover(void)

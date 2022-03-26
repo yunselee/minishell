@@ -69,6 +69,8 @@ int main(int argc, const char **argv, const char **envp)
 	{
 		text = readline("Prompt :");
 		{
+			if(text == NULL)
+				continue;
 			if (!try_excute_command(text))
 			{
 				free(text);

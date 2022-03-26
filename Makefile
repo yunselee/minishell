@@ -6,7 +6,7 @@
 #    By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 15:36:01 by jin-lee           #+#    #+#              #
-#    Updated: 2022/03/26 18:19:33 by yunselee         ###   ########.fr        #
+#    Updated: 2022/03/26 18:41:08 by yunselee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -111,7 +111,7 @@ $(NAME): $(OBJS) $(LIBFT) $(ALLOW_FUNCTION)
 # -I $(INCS_DIR) $(READLINE_HEADER)
 	# @echo $(PURPLE)"#####"$(EOC) $(PINK)$(notdir $(<:.c=.o))$(EOC)$(CLEAR)
 $(OBJS_DIR)/%.o: %.c | $(OBJS_DIR)
-	$(CC) $(CDEBUG) $(CFLAGS) $(INCS_DIR) $(READLINE_HEADER) -c $^ -o $@
+	$(CC) $(CDEBUG) $(CFLAGS) $(INCS_DIR) $(READLINE_HEADER) -c $^ -o $@ -g
 	
 
 $(OBJS_DIR):

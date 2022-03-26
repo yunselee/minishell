@@ -1,0 +1,9 @@
+{
+	"makefile.launchConfigurations": [
+		{
+			"cwd": "/Users/yunselee/minishell",
+			"binaryPath": "/Users/yunselee/minishell/minishell",
+			"binaryArgs": []
+		}
+	]
+}
