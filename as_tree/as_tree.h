@@ -1,6 +1,8 @@
 #ifndef AS_TREE_H
 # define AS_TREE_H
 
+#include "../command_initializer/command_initializer.h"
+
 typedef enum	e_cmd_type
 {
 	CMD_TYPE_COMMAND,
@@ -15,13 +17,14 @@ typedef enum	e_cmd_type
 
 typedef struct	s_node
 {
-	char		*data;
-	t_node		*left;
-	t_node		*right;
-	t_cmd_type	cmd_type;
+	char				*data;
+	struct s_node		*left;
+	struct s_node		*right;
+	t_cmd_type			cmd_type;
 }				t_node;
 
-t_node		*insert_tree(t_node *root_or_null, char *data);
-t_cmd_type	get_cmd_type(char* data);
+t_node	*insert_astree(t_node *root_or_null, t_node *new_node);
+t_node	*init_astree_malloc(t_command *command);
+void	destroy_astree(t_node* root);
 
 #endif /* AS_TREE_H */
