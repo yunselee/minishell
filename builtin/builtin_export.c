@@ -6,10 +6,12 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 17:03:30 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/18 19:24:13 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/03/26 16:02:27 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
+#include "exit_code.h"
 #include "builtin.h"
 #include "../env_variable/env_variable.h"
 #include "libft/libft.h"
@@ -37,18 +39,19 @@ static char	*tokenize(char *str_or_null, const char *delims)
 	return (token);
 }
 
-void	builtin_export(char **tokens, int token_size)
+void	builtin_export(const char **args)
 {
 	const char	*key;
 	const char	*value;
 	int			i;
 
-	i = 0;
-	while (i < token_size)
+	i = 1;
+	while (args[i] != NULL)
 	{
-		key = tokenize(tokens, "=");
+		key = tokenize(args[i], "=");
 		value = tokenize(NULL, "=");
 		register_env_variable(key, value);
 		i++;
 	}
+	exit_code_set(EXIT_SUCCESS);
 }

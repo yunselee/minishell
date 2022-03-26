@@ -6,18 +6,24 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:18:43 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/18 19:24:20 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/03/26 16:01:39 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	builtin_unset(const char **tokens, int token_size)
+#include "exit_code.h"
+#include "builtin.h"
+#include "env_variable.h"
+#include <stdlib.h>
+
+void	builtin_unset(const char **args)
 {
 	int	i;
 
-	i = 0;
-	while (i < token_size)
+	i = 1;
+	while (args[i] != NULL)
 	{
-		remove_env_variable(tokens[i]);
+		remove_env_variable(args[i]);
 		i++;
 	}
+	exit_code_set(EXIT_SUCCESS);
 }
