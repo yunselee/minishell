@@ -1,4 +1,4 @@
-#ifdef AS_TREE_H
+#ifndef AS_TREE_H
 # define AS_TREE_H
 
 typedef enum	e_cmd_type
