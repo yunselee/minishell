@@ -23,7 +23,7 @@ static void	set_pipe_recursive(t_node *astree)
 	int		pipe_fd[2];
 	pid_t	child;
 
-	pipe(pipe_fd);
+	_pipe(pipe_fd);
 	child = _fork();
 	if (child == CHILD)
 	{

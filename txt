@@ -101,3 +101,16 @@ No such file or directory
 echo O
 env O
 pwd O
+
+
+ls -a | sort | grep e > txt 
+무한루프
+
+시그널 -> o
+
+add_history -> X
+
+파이프
+Prompt :cat 1 | cat 2 | cat 3
+cat: stdin: Bad file descriptor
+cat: stdin: Bad file descriptor

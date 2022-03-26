@@ -6,7 +6,7 @@
 #    By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 15:36:01 by jin-lee           #+#    #+#              #
-#    Updated: 2022/03/26 18:41:08 by yunselee         ###   ########.fr        #
+#    Updated: 2022/03/26 20:57:39 by yunselee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,23 +19,9 @@ ifeq ($(DEBUG),true)
 	CDEBUG = -g
 endif
 
-# GREEN			=	"\033[32m"
-# PURPLE			=	"\033[34m"
-# PINK			=	"\033[35m"
-# EOC				=	"\033[0m"
-# CLEAR			=	"\x1b[1A\x1b[M"
-
-# Cluster
 READLINE_HEADER	= -I ~/.brew/opt/readline/include
 READLINE_FOLDER	= -L ~/.brew/opt/readline/lib -lreadline -lhistory
 
-# jin-lee local workspace
-# READLINE_HEADER	= -I /opt/homebrew/opt/readline/include
-# READLINE_FOLDER	= -l readline -L /opt/homebrew/opt/readline/lib
-
-# sangchpa local workspace
-# READLINE_HEADER	= -I /usr/local/opt/readline/include
-# READLINE_FOLDER	= -l readline -L /usr/local/opt/readline/lib
 
 LIBFT			= ./libft/libft.a
 ALLOW_FUNCTION		= ./allow_function/allow_function.a
@@ -106,10 +92,8 @@ all: $(NAME)
 $(NAME): $(OBJS) $(LIBFT) $(ALLOW_FUNCTION)
 	$(CC) $(CDEBUG) $(READLINE_FOLDER) $^ -o $@ -g
 	
-	# @echo $(CLEAR)$(GREEN)$(NAME) built successfully.$(EOC)
 
 # -I $(INCS_DIR) $(READLINE_HEADER)
-	# @echo $(PURPLE)"#####"$(EOC) $(PINK)$(notdir $(<:.c=.o))$(EOC)$(CLEAR)
 $(OBJS_DIR)/%.o: %.c | $(OBJS_DIR)
 	$(CC) $(CDEBUG) $(CFLAGS) $(INCS_DIR) $(READLINE_HEADER) -c $^ -o $@ -g
 	
@@ -127,14 +111,14 @@ $(ALLOW_FUNCTION) :
 
 # clean, fclean, re
 clean: 
-	@$(MAKE) -C ./libft clean
-	@$(MAKE) -C ./allow_function clean
-	@$(RM) -r $(OBJS_DIR)
+	$(MAKE) -C ./libft clean
+	$(MAKE) -C ./allow_function clean
+	$(RM) -r $(OBJS_DIR)
 
 fclean: clean
-	@$(MAKE) -C ./libft fclean
-	@$(MAKE) -C ./allow_function fclean
-	@$(RM) $(NAME)
+	$(MAKE) -C ./libft fclean
+	$(MAKE) -C ./allow_function fclean
+	$(RM) $(NAME)
 
 re: fclean all
 

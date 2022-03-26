@@ -13,6 +13,7 @@
 #include "stdio_manager/stdio_manager.h"
 #include "execute/execute.h"
 #include "sig/sig.h"
+#include "allow_function.h"
 
 //static void print_command(t_command *command);
 //static void print_envs(char **envs);
@@ -22,14 +23,20 @@ static void register_all_env(const char **envp)
 {
 	const char	**p_envp;
 	char		**tokens;
+	int			i;
 
 	p_envp = envp;
 	while (*p_envp != NULL)
 	{
 		tokens = ft_split(*p_envp, '=');
 		register_env_variable(tokens[0], tokens[1]);
-		free(tokens[0]);
-		free(tokens[1]);
+		i = 0;
+		while(tokens[i] != NULL)
+		{
+			_free(tokens[i]);
+			i++;
+		}
+		_free(tokens);
 		++p_envp;
 	}
 }
@@ -44,8 +51,7 @@ static bool	try_excute_command(char *text)
 	{
 		if (ft_strcmp(command.tokens[0], "exit") == 0)
 		{
-			free(text);
-			return (false);
+			exit(EXIT_SUCCESS);
 		}
 		stdio_back_up();
 		root = init_astree_malloc(&command);
@@ -70,7 +76,7 @@ int main(int argc, const char **argv, const char **envp)
 		text = readline("Prompt :");
 		{
 			if(text == NULL)
-				continue;
+				return (EXIT_SUCCESS);
 			if (!try_excute_command(text))
 			{
 				free(text);
@@ -78,6 +84,7 @@ int main(int argc, const char **argv, const char **envp)
 			}
 		}
 		free(text);
+		system("leaks minishell > leaks_result; cat leaks_result | grep leaked; rm -rf leaks_result");
 	}
 	return (EXIT_SUCCESS);
 }
