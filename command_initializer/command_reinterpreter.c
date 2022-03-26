@@ -3,8 +3,10 @@
 #include "../env_variable/env_variable.h"
 #include "../libft/libft.h"
 
-static char get_escape(char c)
+static char get_escape(char c, bool is_plain)
 {
+	if (is_plain)
+		return (c);
 	if (c == 'n')
 		return ('\n');
 	else if (c == 't')
@@ -13,8 +15,12 @@ static char get_escape(char c)
 		return ('\\');
 	else if (c == '\r')
 		return ('\r');
+	else if (c == ' ')
+		return ('\\');
+	else if (c == '\t')
+		return ('\\');
 	else
-		return c;
+		return (c);
 }
 
 void reinterpret_env(char *token)
@@ -45,7 +51,7 @@ void reinterpret_env(char *token)
 	}
 }
 
-void reinterpret_escape(char *token)
+void reinterpret_escape(char *token, bool is_plain)
 {
 	char	*p_escape;
 	char	*p_end;
@@ -55,11 +61,11 @@ void reinterpret_escape(char *token)
 	while (p_escape != NULL)
 	{
 		c = *(p_escape + 1);
-		if (c == '\0' || c == ' ' || c == '\t')
+		if (c == '\0')
 		{
 			return ;
 		}
-		c = get_escape(*(p_escape + 1));
+		c = get_escape(*(p_escape + 1), is_plain);
 		*p_escape++ = c;
 		p_end = p_escape + 1;
 		while (*p_end != '\0')

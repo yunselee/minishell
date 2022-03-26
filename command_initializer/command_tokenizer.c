@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include "command_initializer.h"
 #include "../libft/libft.h"
-
+#include <stdio.h>
 static char *init_plain_command(char *text, t_command *out_command)
 {
 	char	*p_token;
@@ -9,10 +9,22 @@ static char *init_plain_command(char *text, t_command *out_command)
 
 	p_token = out_command->tokens[out_command->num_token++];
 	p_end = text;
-	while (ft_strchr("\"\'><| \t", *p_end) == NULL)
+	while (*p_end != '\0')
+	{
+		if (*p_end == '\\' && (*(p_end + 1) == '\"' || *(p_end + 1) == '\''))
+			p_end++;
+		else if (*p_end == '\"' || *p_end == '\'' || *p_end == '>'
+			|| *p_end == '<' || *p_end == '|' || *p_end == ' '
+			|| *p_end == '\t' )
+			break;
 		p_end++;
+	}
+	/*
+	while (ft_strchr("\"\'><| \t", *p_end) == NULL)
+		p_end++;*/
 	ft_strlcpy(p_token, text, p_end - text + 1);
 	reinterpret_env(p_token);
+	reinterpret_escape(p_token, true);
 	return (p_end - 1);
 }
 
@@ -38,8 +50,12 @@ static char *init_single_quot_command(char *text, t_command *out_command)
 	text++;
 	p_token = out_command->tokens[out_command->num_token++];
 	p_end = ft_strchr(text, '\'');
+	while (*(p_end - 1) == '\\')
+	{
+		p_end = ft_strchr(p_end + 1, '\'');
+	}
 	ft_strlcpy(p_token, text, p_end - text + 1);
-	reinterpret_escape(p_token);
+	reinterpret_escape(p_token, false);
 	return (p_end);
 }
 
@@ -51,9 +67,13 @@ static char *init_double_quot_command(char *text, t_command *out_command)
 	text++;
 	p_token = out_command->tokens[out_command->num_token++];
 	p_end = ft_strchr(text, '\"');
+	while (*(p_end - 1) == '\\')
+	{
+		p_end = ft_strchr(p_end + 1, '\"');
+	}
 	ft_strlcpy(p_token, text, p_end - text + 1);
 	reinterpret_env(p_token);
-	reinterpret_escape(p_token);
+	reinterpret_escape(p_token, false);
 	return (p_end);
 }
 
@@ -76,7 +96,7 @@ void tokenize_command(char *text, t_command *out_command)
 		{
 			p_text = init_redirection_command(p_text, out_command);
 		}
-		else if (*p_text != ' ' && *p_text != '\t')
+		else if ((*p_text != ' ' && *p_text != '\t') || *p_text == '\\')
 		{
 			p_text = init_plain_command(p_text, out_command);
 		}
