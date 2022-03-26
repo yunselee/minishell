@@ -6,7 +6,7 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 16:51:35 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/23 20:34:21 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/03/26 17:50:34 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,12 @@
 #include <signal.h>
 #include <readline/readline.h>
 #include <readline/history.h>
+#include <stdlib.h>
 
 static void	sig_int(int signal)
 {
 
+	(void)signal;
 	rl_on_new_line();
 	rl_redisplay();
 	printf("%c[K\n", 27);
@@ -29,6 +31,7 @@ static void	sig_int(int signal)
 
 static void	sig_quit(int signal)
 {
+	(void)signal;
 	exit(0);
 }
 

@@ -6,12 +6,17 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 19:55:48 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/24 17:17:24 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/03/26 17:24:25 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ALLOW_FUNCTION_H
 # define ALLOW_FUNCTION_H
+
+#include <sys/stat.h>
+#include <dirent.h>
+#include <stdlib.h>
+#include <unistd.h>
 
 void			*_malloc(unsigned int size);
 void			_free(void *pointer);

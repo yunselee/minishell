@@ -1,6 +1,6 @@
 #ifndef EXECUTE_H
 # define EXECUTE_H
 
-int		exit_code_get_latest (void);
+int		execute_recursive (t_node	*astree);
 
 #endif

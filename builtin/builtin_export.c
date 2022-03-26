@@ -6,15 +6,15 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 17:03:30 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/26 16:02:27 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/03/26 17:21:07 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "exit_code.h"
+#include "../exit_code/exit_code.h"
 #include "builtin.h"
 #include "../env_variable/env_variable.h"
-#include "libft/libft.h"
+#include "../libft/libft.h"
 
 static char	*tokenize(char *str_or_null, const char *delims)
 {
@@ -39,10 +39,10 @@ static char	*tokenize(char *str_or_null, const char *delims)
 	return (token);
 }
 
-void	builtin_export(const char **args)
+void	builtin_export(char **args)
 {
-	const char	*key;
-	const char	*value;
+	char	*key;
+	char	*value;
 	int			i;
 
 	i = 1;

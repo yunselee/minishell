@@ -1,6 +1,6 @@
 #include <unistd.h>
-#include "allow_function/allow_function.h"
-#include "exit_code.h"
+#include "../allow_function/allow_function.h"
+#include "../exit_code/exit_code.h"
 
 void close_pointer(int fd[])
 {
@@ -13,7 +13,7 @@ void wait_pid_and_set_exit_code(pid_t child)
 	int exit_code;
 
 	_waitpid(child, &exit_code, 0);
-	set_exit_code(exit_code);
+	exit_code_set(exit_code);
 }
 
 void connect_file_to_std (const char *pathname, \

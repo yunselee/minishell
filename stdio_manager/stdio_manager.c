@@ -1,15 +1,15 @@
 
-#include "allow_function/allow_function.h"
+#include "../allow_function/allow_function.h"
 #include <unistd.h>
 
 static int *get_back_up_fd(void)
 {
-	static int *back_up_fd[2];
+	static int back_up_fd[2];
 
 	return (back_up_fd);
 }
 
-void stdio_back_up(void)
+void	stdio_back_up(void)
 {
 	int *back_up_fd;
 
@@ -18,7 +18,7 @@ void stdio_back_up(void)
 	back_up_fd[2] = _dup(STDOUT_FILENO);
 }
 
-void stdio_recover(void)
+void	stdio_recover(void)
 {
 	const int *back_up_fd = get_back_up_fd();
 
@@ -26,7 +26,7 @@ void stdio_recover(void)
 	_dup2(back_up_fd[1], STDOUT_FILENO);
 }
 
-void stdio_close_back_up_fd(void)
+void	stdio_close_back_up(void)
 {
 	const int *back_up_fd = get_back_up_fd();
 

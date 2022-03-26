@@ -22,7 +22,7 @@ static int index_of_env(const char *key)
 
 const char* get_env_variable_or_null(const char* key)
 {
-	size_t	index;
+	int	index;
 
 	index = index_of_env(key);
 	if (index == -1)
@@ -59,7 +59,6 @@ void register_env_variable(const char *key, const char *value_or_null)
 
 void remove_env_variable(const char *key)
 {
-	t_env_variable	*del_env;
 	int				index;
 
 	index = index_of_env(key);

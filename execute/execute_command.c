@@ -1,9 +1,12 @@
-#include "libft/libft.h"
-#include "exit_code.h"
+#include "../libft/libft.h"
+#include "../exit_code/exit_code.h"
 #include <fcntl.h>
 #include <unistd.h>
-#include "allow_function/allow_function.h"
-#include "as_tree/as_tree.h"
+#include "../allow_function/allow_function.h"
+#include "../as_tree/as_tree.h"
+#include <stdio.h>
+#include <readline/readline.h>
+#include "../stdio_manager/stdio_manager.h"
 
 #define CHILD 0
 # define HEREDOC_DIR "./.heredoc"
@@ -12,13 +15,13 @@ void close_pointer(int fd[]);
 void wait_pid_and_set_exit_code(pid_t child);
 void connect_file_to_std (const char *pathname, int path_open_flags, int path_open_mode, int std_fd);
 void	execute_basic_cmd(t_node *astree);
+void	execute_recursive(t_node *astree);
 
 //fork와 fd연관해서 다시 읽기;
 static void	set_pipe_recursive(t_node *astree)
 {
 	int		pipe_fd[2];
 	pid_t	child;
-	int		exit_code;
 
 	pipe(pipe_fd);
 	child = _fork();
@@ -40,6 +43,22 @@ static void	set_pipe_recursive(t_node *astree)
 	}
 	wait_pid_and_set_exit_code(child);
 	close_pointer(pipe_fd);
+}
+
+static void	rl_until_sign(const char *sign, int fd)
+{
+	char	*line;
+
+	line = readline("> ");
+	while (ft_strncmp(line, sign, ft_strlen(sign)) \
+		|| ft_strlen(line) != ft_strlen(sign))
+	{
+		ft_putendl_fd(line, fd);
+		free(line);
+		line = readline("> ");
+	}
+	free(line);
+	close(fd);
 }
 
 static void	execute_heredoc(t_node *astree)
@@ -103,20 +122,4 @@ void	execute_recursive(t_node *astree)
 		return ;
 	}
 	execute_basic_cmd(astree);
-}
-
-void	excute_command(char *line)
-{
-	const t_node	*astree = set_astree(get_token(line));
-
-	stdio_back_up();
-	if (!check_syntax(astree))
-		printf("Syntax Error\n");
-	else
-	{
-		execute_recursive(astree);
-	}
-	delete_astree(astree);
-	stdio_recover();
-	stdio_close_back_up_fd();
 }
