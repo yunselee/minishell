@@ -6,7 +6,7 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 19:46:00 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/17 21:20:52 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/03/24 17:09:44 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ char	*_getcwd(char *buf, size_t size)
 	if (ret == NULL)
 	{
 		printf("%s\n", strerror(errno));
-		exit(1);
 	}
 	return (ret);
 }

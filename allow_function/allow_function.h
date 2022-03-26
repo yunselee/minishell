@@ -6,7 +6,7 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 19:55:48 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/17 21:14:09 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/03/24 17:17:24 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@
 void			*_malloc(unsigned int size);
 void			_free(void *pointer);
 int				_write(int fd, const char *buf, size_t size);
-int				_open(const char *pathname, int flags);
+int				_open(const char *pathname, int flags, int mode);
 ssize_t			_read(int fd, void*buf, size_t count);
 int				_close(int fd);
 pid_t			_fork(void);
 pid_t			_wait(int *wstatus);
+pid_t			_waitpid(pid_t pid, int *status, int options);
 int				_kill(pid_t pid, int sig);
 char			*_getcwd(char *buf, size_t size);
 int				_chdir(const char *path);

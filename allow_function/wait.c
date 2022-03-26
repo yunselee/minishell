@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Wait.c                                             :+:      :+:    :+:   */
+/*   wait.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 19:45:36 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/17 21:16:19 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/03/24 17:17:05 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,21 @@ pid_t	_wait(int *wstatus)
 	if (ret == -1)
 	{
 		printf("%s\n", strerror(errno));
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 	return (ret);
 }
+
+pid_t _waitpid(pid_t pid, int *status, int options)
+{
+	const pid_t	ret = waitpid(pid, status, options);
+
+	if (ret == -1)
+	{
+		printf("%s\n", strerror(errno));
+		exit(EXIT_FAILURE);
+	}
+	return (ret);
+
+}
+
