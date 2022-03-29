@@ -6,7 +6,7 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 17:30:03 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/23 16:32:52 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/03/29 19:16:03 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static unsigned char	*getter(void)
 	return (&exit_code);
 }
 
-int		exit_code_get_latest (void)
+int	exit_code_get_latest(void)
 {
 	return (*getter());
 }

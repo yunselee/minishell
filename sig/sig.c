@@ -6,7 +6,7 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 16:51:35 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/26 21:04:31 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/03/29 19:15:34 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	sig_int(int signal)
 	rl_redisplay();
 }
 
-static void sig_quit(int siganl)
+static void	sig_quit(int siganl)
 {
 	(void)siganl;
 	exit(0);

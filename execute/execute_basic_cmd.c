@@ -13,7 +13,7 @@
 // fork하고 내부에서 처리
 #define CHILD 0
 
-void wait_pid_and_set_exit_code(pid_t child);
+void	wait_pid_and_set_exit_code(pid_t child);
 
 // no return
 static void	execve_child_process(char **args)
@@ -40,7 +40,7 @@ static void	execve_child_process(char **args)
 	printf("%s : command not found\n", args[0]);
 }
 
-static void fork_and_exe(char **args)
+static void	fork_and_exe(char **args)
 {
 	pid_t	child;
 
