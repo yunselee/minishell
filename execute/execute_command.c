@@ -9,6 +9,10 @@
 #include "../stdio_manager/stdio_manager.h"
 
 #define CHILD 0
+
+#define READ 0
+#define WRITE 1
+
 # define HEREDOC_DIR "./.heredoc"
 
 void close_pointer(int fd[]);
@@ -27,22 +31,17 @@ static void	set_pipe_recursive(t_node *astree)
 	child = _fork();
 	if (child == CHILD)
 	{
-		_dup2(pipe_fd[1], STDOUT_FILENO);
+		_dup2(pipe_fd[WRITE], STDOUT_FILENO);
 		close_pointer(pipe_fd);
 		execute_recursive(astree->left);
 		exit(EXIT_SUCCESS);
 	}
 	wait_pid_and_set_exit_code(child);
-	child = _fork();
-	if (child  == CHILD)
-	{
-		_dup2(pipe_fd[0], STDIN_FILENO);
-		close_pointer(pipe_fd);
-		execute_recursive(astree->right);
-		exit(EXIT_SUCCESS);
-	}
-	wait_pid_and_set_exit_code(child);
-	close_pointer(pipe_fd);
+	close(pipe_fd[WRITE]);
+
+	_dup2(pipe_fd[READ], STDIN_FILENO);
+	close(pipe_fd[READ]);
+	execute_recursive(astree->right);
 }
 
 static void	execute_heredoc(t_node *astree)
