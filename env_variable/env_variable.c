@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include "../libft/libft.h"
 #include "env_variable.h"
+#include "exit_code.h"
 
 static t_env_variable_list g_variables;
 
@@ -22,11 +23,20 @@ static int index_of_env(const char *key)
 
 const char* get_env_variable_or_null(const char* key)
 {
-	int	index;
+	static char	exit_code[32];
+	char		*temp;
+	int			index;
 
 	index = index_of_env(key);
 	if (index == -1)
 	{
+		if (ft_strncmp(key, "?", MAX_KEY_LENGTH) == 0)
+		{
+			temp = ft_itoa(exit_code_get_latest());
+			ft_strcpy(exit_code, temp);
+			free(temp);
+			return exit_code;
+		}
 		return (NULL);
 	}
 	return (g_variables.list[index].value);
