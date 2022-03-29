@@ -45,33 +45,27 @@ static void	set_pipe_recursive(t_node *astree)
 	close_pointer(pipe_fd);
 }
 
-static void	rl_until_sign(const char *sign, int fd)
-{
-	char	*line;
-
-	line = readline("> ");
-	while (ft_strncmp(line, sign, ft_strlen(sign)) \
-		|| ft_strlen(line) != ft_strlen(sign))
-	{
-		ft_putendl_fd(line, fd);
-		free(line);
-		line = readline("> ");
-	}
-	free(line);
-	close(fd);
-}
-
 static void	execute_heredoc(t_node *astree)
 {
 	const char	*eof = astree->right->data;
 	const pid_t	child = fork();
 	int fd;
+	char	*line;
 
 	if (child == CHILD)
 	{
 		stdio_recover();
 		fd = _open(HEREDOC_DIR, O_WRONLY | O_CREAT, S_IRWXU);
-		rl_until_sign(eof, fd);
+		line = readline("> ");
+		while (ft_strncmp(line, eof, ft_strlen(eof)) \
+			|| ft_strlen(line) != ft_strlen(eof))
+		{
+			ft_putendl_fd(line, fd);
+			free(line);
+			line = readline("> ");
+		}
+		free(line);
+		close(fd);
 		exit(EXIT_SUCCESS);
 	}
 	wait_pid_and_set_exit_code(child);
@@ -122,4 +116,5 @@ void	execute_recursive(t_node *astree)
 		return ;
 	}
 	execute_basic_cmd(astree);
+	_unlink(HEREDOC_DIR);
 }

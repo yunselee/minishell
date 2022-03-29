@@ -108,9 +108,41 @@ ls -a | sort | grep e > txt
 
 시그널 -> o
 
-add_history -> X
+add_history -> 증상파악못한걸로
 
 파이프
 Prompt :cat 1 | cat 2 | cat 3
 cat: stdin: Bad file descriptor
 cat: stdin: Bad file descriptor
+
+
+pipe고치기
+exit code 세팅
+놈 고치기
+
+
+
+<< : 제대로 작동하는지 체크
+해결 :
+Prompt :unset
+Process 37975: 0 leaks for 0 total leaked bytes.
+Prompt :echo $?
+?
+
+
+
+해결
+bash-3.2$ ./minishell 
+Prompt :cat << a
+> lsdnasldv dasldvskl asdv klnasdvl
+> a
+lsdnasldv dasldvskl asdv klnasdvl
+Process 41554: 0 leaks for 0 total leaked bytes.
+Prompt :echo << a
+> lsadnsl asdvlknsdvlk
+> a
+Segmentation fault: 11
+bash-3.2$ 
+bash-3.2$ echo  << a  << b
+> a
+> b

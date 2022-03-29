@@ -6,7 +6,7 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 17:04:06 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/26 19:07:44 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/03/29 16:48:11 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	builtin_echo(const char **args)
 
 	i = 1;
 	is_newline = true;
-	if (ft_strcmp(args[i], ARG_NEWLINE) == 0)
+	if (args[i] != NULL && ft_strcmp(args[i], ARG_NEWLINE) == 0)
 	{
 		is_newline = false;
 		i++;
