@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_cd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: seunghyk <seunghyk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 14:37:35 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/29 17:35:44 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/03/29 19:06:56 by seunghyk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	builtin_cd(const char **args)
 {
 	const char	*path = args[1];
 	const char	*old_pwd;
-	char	*cur_pwd;
+	char		*cur_pwd;
 	int			exit_code;
 
 	if (path == NULL)
@@ -35,7 +35,7 @@ void	builtin_cd(const char **args)
 	register_env_variable(OLDPWD, old_pwd);
 	register_env_variable(PWD, cur_pwd);
 	_free((void *)cur_pwd);
-	if(exit_code != 0)
+	if (exit_code != 0)
 		exit_code_set(1);
 	else
 	{

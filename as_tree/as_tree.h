@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   as_tree.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: seunghyk <seunghyk@student.42seoul.kr>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/29 19:29:36 by seunghyk          #+#    #+#             */
+/*   Updated: 2022/03/29 19:30:12 by seunghyk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef AS_TREE_H
 # define AS_TREE_H
 
-#include "../command_initializer/command_initializer.h"
+# include "../command_initializer/command_initializer.h"
 
-typedef enum	e_cmd_type
+typedef enum e_cmd_type
 {
 	CMD_TYPE_COMMAND,
 	CMD_TYPE_ARG,
@@ -15,7 +27,7 @@ typedef enum	e_cmd_type
 	CMD_TYPE_NONE
 }				t_cmd_type;
 
-typedef struct	s_node
+typedef struct s_node
 {
 	char				*data;
 	struct s_node		*left;
@@ -25,6 +37,6 @@ typedef struct	s_node
 
 t_node	*insert_astree(t_node *root_or_null, t_node *new_node);
 t_node	*init_astree_malloc(t_command *command);
-void	destroy_astree(t_node* root);
+void	destroy_astree(t_node *root);
 
 #endif /* AS_TREE_H */

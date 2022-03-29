@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   command_reinterpreter.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: seunghyk <seunghyk@student.42seoul.kr>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/29 19:29:56 by seunghyk          #+#    #+#             */
+/*   Updated: 2022/03/29 19:30:12 by seunghyk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 #include "command_initializer.h"
 #include "../env_variable/env_variable.h"
 #include "../libft/libft.h"
 
-static char get_escape(char c, bool is_plain)
+static char	get_escape(char c, bool is_plain)
 {
 	if (is_plain)
 		return (c);
@@ -23,13 +35,13 @@ static char get_escape(char c, bool is_plain)
 		return (c);
 }
 
-void reinterpret_env(char *token)
+void	reinterpret_env(char *token)
 {
 	char		copied[MAX_KEY_LENGTH];
 	char		*p_end;
 	char		*p_key;
 	const char	*p_value;
-	
+
 	p_key = ft_strchr(token, '$');
 	while (p_key != NULL)
 	{
@@ -51,7 +63,7 @@ void reinterpret_env(char *token)
 	}
 }
 
-void reinterpret_escape(char *token, bool is_plain)
+void	reinterpret_escape(char *token, bool is_plain)
 {
 	char	*p_escape;
 	char	*p_end;

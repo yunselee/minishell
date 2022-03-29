@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   allow_function.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: seunghyk <seunghyk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 19:55:48 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/26 17:24:25 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/03/29 19:02:38 by seunghyk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ALLOW_FUNCTION_H
 # define ALLOW_FUNCTION_H
 
-#include <sys/stat.h>
-#include <dirent.h>
-#include <stdlib.h>
-#include <unistd.h>
+# include <sys/stat.h>
+# include <dirent.h>
+# include <stdlib.h>
+# include <unistd.h>
 
 void			*_malloc(unsigned int size);
 void			_free(void *pointer);

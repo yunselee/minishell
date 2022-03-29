@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execve.c                                           :+:      :+:    :+:   */
+/*   env_variable_destroy.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seunghyk <seunghyk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/17 19:27:20 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/29 19:00:25 by seunghyk         ###   ########.fr       */
+/*   Created: 2022/03/29 19:30:02 by seunghyk          #+#    #+#             */
+/*   Updated: 2022/03/29 19:30:12 by seunghyk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <errno.h>
-#include <string.h>
-#include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
+#include "env_variable.h"
 
-int	_execve(const char *pathname, char *const argv[], char *const envp[])
+void	destroy_envs(char **envs)
 {
-	const int	ret = execve(pathname, argv, envp);
+	char	**p_envs;
 
-	return (ret);
+	p_envs = envs;
+	while (*p_envs != NULL)
+	{
+		free(*p_envs);
+		++p_envs;
+	}
+	free(envs);
 }

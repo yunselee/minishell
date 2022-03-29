@@ -4,8 +4,8 @@
 
 void close_pointer(int fd[])
 {
-	_close(fd[0]);
 	_close(fd[1]);
+	_close(fd[0]);
 }
 
 void wait_pid_and_set_exit_code(pid_t child)

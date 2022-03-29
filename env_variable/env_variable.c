@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   env_variable.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: seunghyk <seunghyk@student.42seoul.kr>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/29 19:30:05 by seunghyk          #+#    #+#             */
+/*   Updated: 2022/03/29 19:30:12 by seunghyk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 #include "../libft/libft.h"
 #include "env_variable.h"
 #include "exit_code.h"
 
-static t_env_variable_list g_variables;
+static t_env_variable_list	g_variables;
 
-static int index_of_env(const char *key)
+static int	index_of_env(const char *key)
 {
 	int	index;
 
@@ -21,7 +33,7 @@ static int index_of_env(const char *key)
 	return (-1);
 }
 
-const char* get_env_variable_or_null(const char* key)
+const char	*get_env_variable_or_null(const char *key)
 {
 	static char	exit_code[32];
 	char		*temp;
@@ -35,14 +47,14 @@ const char* get_env_variable_or_null(const char* key)
 			temp = ft_itoa(exit_code_get_latest());
 			ft_strcpy(exit_code, temp);
 			free(temp);
-			return exit_code;
+			return (exit_code);
 		}
 		return (NULL);
 	}
 	return (g_variables.list[index].value);
 }
 
-void register_env_variable(const char *key, const char *value_or_null)
+void	register_env_variable(const char *key, const char *value_or_null)
 {
 	t_env_variable	*new_env;
 	int				index;
@@ -67,7 +79,7 @@ void register_env_variable(const char *key, const char *value_or_null)
 	}
 }
 
-void remove_env_variable(const char *key)
+void	remove_env_variable(const char *key)
 {
 	int				index;
 
@@ -86,10 +98,11 @@ char	**get_all_env_malloc(void)
 	int		i;
 
 	i = 0;
-	pa_combined = (char**)malloc(sizeof(char*) * (MAX_ENV + 1));
+	pa_combined = (char **)malloc(sizeof(char *) * (MAX_ENV + 1));
 	while (i < g_variables.size)
 	{
-		pa_combined[i] = (char*)malloc(sizeof(char) * (MAX_KEY_LENGTH + MAX_VALUE_LENGTH));
+		pa_combined[i] = (char *)malloc(sizeof(char)
+				* (MAX_KEY_LENGTH + MAX_VALUE_LENGTH));
 		p_combined = pa_combined[i];
 		p_src = g_variables.list[i].key;
 		while (*p_src != '\0')
@@ -103,17 +116,4 @@ char	**get_all_env_malloc(void)
 	}
 	pa_combined[i] = NULL;
 	return (pa_combined);
-}
-
-void	destroy_envs(char **envs)
-{
-	char **p_envs;
-
-	p_envs = envs;
-	while (*p_envs != NULL)
-	{
-		free(*p_envs);
-		++p_envs;
-	}
-	free(envs);
 }

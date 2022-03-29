@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   command_tokenizer.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: seunghyk <seunghyk@student.42seoul.kr>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/29 19:29:58 by seunghyk          #+#    #+#             */
+/*   Updated: 2022/03/29 19:30:12 by seunghyk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 #include "command_initializer.h"
 #include "../libft/libft.h"
 #include <stdio.h>
-static char *init_plain_command(char *text, t_command *out_command)
+static char	*init_plain_command(char *text, t_command *out_command)
 {
 	char	*p_token;
 	char	*p_end;
@@ -16,19 +28,16 @@ static char *init_plain_command(char *text, t_command *out_command)
 		else if (*p_end == '\"' || *p_end == '\'' || *p_end == '>'
 			|| *p_end == '<' || *p_end == '|' || *p_end == ' '
 			|| *p_end == '\t' )
-			break;
+			break ;
 		p_end++;
 	}
-	/*
-	while (ft_strchr("\"\'><| \t", *p_end) == NULL)
-		p_end++;*/
 	ft_strlcpy(p_token, text, p_end - text + 1);
 	reinterpret_env(p_token);
 	reinterpret_escape(p_token, true);
 	return (p_end - 1);
 }
 
-static char *init_redirection_command(char *text, t_command *out_command)
+static char	*init_redirection_command(char *text, t_command *out_command)
 {
 	char	*p_token;
 	char	*p_end;
@@ -42,7 +51,7 @@ static char *init_redirection_command(char *text, t_command *out_command)
 	return (p_end - 1);
 }
 
-static char *init_single_quot_command(char *text, t_command *out_command)
+static char	*init_single_quot_command(char *text, t_command *out_command)
 {
 	char	*p_token;
 	char	*p_end;
@@ -59,7 +68,7 @@ static char *init_single_quot_command(char *text, t_command *out_command)
 	return (p_end);
 }
 
-static char *init_double_quot_command(char *text, t_command *out_command)
+static char	*init_double_quot_command(char *text, t_command *out_command)
 {
 	char	*p_token;
 	char	*p_end;
@@ -77,7 +86,7 @@ static char *init_double_quot_command(char *text, t_command *out_command)
 	return (p_end);
 }
 
-void tokenize_command(char *text, t_command *out_command)
+void	tokenize_command(char *text, t_command *out_command)
 {
 	char	*p_text;
 
