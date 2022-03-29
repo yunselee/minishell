@@ -6,7 +6,7 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 17:03:30 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/26 17:21:07 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/03/29 19:10:55 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "builtin.h"
 #include "../env_variable/env_variable.h"
 #include "../libft/libft.h"
+#include <stdio.h>
 
 static char	*tokenize(char *str_or_null, const char *delims)
 {
@@ -44,7 +45,19 @@ void	builtin_export(char **args)
 	char	*key;
 	char	*value;
 	int			i;
+	char		**env;
 
+	if(args[1] == NULL)
+	{
+		i = 0;
+		env = get_all_env_malloc();
+		while(env[i] != NULL)
+		{
+			printf("declare -x %s\n", env[i]);
+			i++;
+		}
+		destroy_envs(env);
+	}
 	i = 1;
 	while (args[i] != NULL)
 	{
