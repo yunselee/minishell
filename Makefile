@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+         #
+#    By: seunghyk <seunghyk@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 15:36:01 by jin-lee           #+#    #+#              #
-#    Updated: 2022/03/26 20:57:39 by yunselee         ###   ########.fr        #
+#    Updated: 2022/03/29 19:27:36 by seunghyk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,6 +71,7 @@ SRCS			= ./main.c \
 							as_tree_insert.c \
 				) \
 				 ./env_variable/env_variable.c \
+				 ./env_variable/env_variable_destroy.c \
 				 ./exit_code/exit_code.c \
 				 ./sig/sig.c \
 				 ./stdio_manager/stdio_manager.c \
