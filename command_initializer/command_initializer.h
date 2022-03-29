@@ -2,7 +2,7 @@
 # define COMMAND_INITIALIZER_H
 
 # define MAX_TOKEN_LENGTH (512)
-# define MAX_TOKEN_COUNT (128)
+# define MAX_TOKEN_COUNT (512)
 
 # include <stdbool.h>
 
