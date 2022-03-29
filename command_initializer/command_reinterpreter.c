@@ -34,7 +34,7 @@ void reinterpret_env(char *token)
 	while (p_key != NULL)
 	{
 		p_end = p_key + 1;
-		while (ft_isalpha(*p_end))
+		while (*p_end != ' ' && *p_end != '\t' && *p_end != '\0')
 			p_end++;
 		ft_strlcpy(copied, p_key + 1, p_end - p_key);
 		p_value = get_env_variable_or_null(copied);
