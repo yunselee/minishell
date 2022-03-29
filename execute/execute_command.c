@@ -55,7 +55,7 @@ static void	execute_heredoc(t_node *astree)
 	if (child == CHILD)
 	{
 		stdio_recover();
-		fd = _open(HEREDOC_DIR, O_WRONLY | O_CREAT, S_IRWXU);
+		fd = _open(HEREDOC_DIR, O_TRUNC | O_WRONLY | O_CREAT, S_IRWXU);
 		line = readline("> ");
 		while (ft_strncmp(line, eof, ft_strlen(eof)) \
 			|| ft_strlen(line) != ft_strlen(eof))
