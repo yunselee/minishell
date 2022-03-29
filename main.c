@@ -15,11 +15,7 @@
 #include "sig/sig.h"
 #include "allow_function.h"
 
-//static void print_command(t_command *command);
-//static void print_envs(char **envs);
-static void register_all_env(const char **envp);
-
-static void register_all_env(const char **envp)
+static void	register_all_env(const char **envp)
 {
 	const char	**p_envp;
 	char		**tokens;
@@ -31,7 +27,7 @@ static void register_all_env(const char **envp)
 		tokens = ft_split(*p_envp, '=');
 		register_env_variable(tokens[0], tokens[1]);
 		i = 0;
-		while(tokens[i] != NULL)
+		while (tokens[i] != NULL)
 		{
 			_free(tokens[i]);
 			i++;
@@ -44,7 +40,7 @@ static void register_all_env(const char **envp)
 static bool	try_excute_command(char *text)
 {
 	t_command	command;
-	t_node* 	root;
+	t_node		*root;
 
 	root = NULL;
 	if (try_init_command(text, &command))
@@ -63,7 +59,7 @@ static bool	try_excute_command(char *text)
 	return (true);
 }
 
-int main(int argc, const char **argv, const char **envp)
+int	main(int argc, const char **argv, const char **envp)
 {
 	char		*text;
 
@@ -75,7 +71,7 @@ int main(int argc, const char **argv, const char **envp)
 	{
 		text = readline("Prompt :");
 		{
-			if(text == NULL)
+			if (text == NULL)
 				return (EXIT_SUCCESS);
 			if (!try_excute_command(text))
 			{
@@ -84,7 +80,6 @@ int main(int argc, const char **argv, const char **envp)
 			}
 		}
 		free(text);
-		system("leaks minishell > leaks_result; cat leaks_result | grep leaked; rm -rf leaks_result");
 	}
 	return (EXIT_SUCCESS);
 }
