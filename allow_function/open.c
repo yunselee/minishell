@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: seunghyk <seunghyk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 19:45:51 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/24 17:00:41 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/03/29 18:58:41 by seunghyk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <string.h>
 #include <unistd.h>
 
-int				_open(const char *pathname, int flags, int mode)
+int	_open(const char *pathname, int flags, int mode)
 {
 	const int	ret = open(pathname, flags, mode);
 

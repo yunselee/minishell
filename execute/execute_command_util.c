@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_command_util.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: seunghyk <seunghyk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:18:42 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/29 19:18:52 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/03/29 19:33:31 by seunghyk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

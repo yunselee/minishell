@@ -6,7 +6,7 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 17:03:30 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/29 19:10:55 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/03/29 19:36:31 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,14 @@ void	builtin_export(char **args)
 {
 	char	*key;
 	char	*value;
-	int			i;
-	char		**env;
+	int		i;
+	char	**env;
 
-	if(args[1] == NULL)
+	if (args[1] == NULL)
 	{
 		i = 0;
 		env = get_all_env_malloc();
-		while(env[i] != NULL)
+		while (env[i] != NULL)
 		{
 			printf("declare -x %s\n", env[i]);
 			i++;

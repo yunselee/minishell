@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_env.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: seunghyk <seunghyk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 14:49:57 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/26 17:14:22 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/03/29 19:07:34 by seunghyk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@
 
 void	builtin_env(void)
 {
-	char	**all_env = get_all_env_malloc();
-	int							i;
+	char	**all_env;
+	int		i;
 
+	all_env = get_all_env_malloc();
 	i = 0;
 	while (all_env[i] != NULL)
 	{

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   command_initializer.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: seunghyk <seunghyk@student.42seoul.kr>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/29 19:29:50 by seunghyk          #+#    #+#             */
+/*   Updated: 2022/03/29 19:30:12 by seunghyk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <readline/readline.h>
@@ -5,7 +17,7 @@
 #include "command_initializer.h"
 #include "../libft/libft.h"
 
-static bool is_open_quot(const char *text)
+static bool	is_open_quot(const char *text)
 {
 	const char	*p_text;
 	char		quot;
@@ -14,7 +26,8 @@ static bool is_open_quot(const char *text)
 	p_text = text;
 	while (*p_text != '\0')
 	{
-		if (*p_text == '\\' && (*(p_text + 1) == '\"' || *(p_text + 1) == '\''))
+		if (*p_text == '\\' && (*(p_text + 1) == '\"'
+				|| *(p_text + 1) == '\''))
 			p_text++;
 		else if (quot == 0 && (*p_text == '\"' || *p_text == '\''))
 			quot = *p_text;
@@ -27,7 +40,7 @@ static bool is_open_quot(const char *text)
 	return (false);
 }
 
-static bool is_empty_line(const char* text)
+static bool	is_empty_line(const char *text)
 {
 	const char	*p_text;
 
@@ -41,7 +54,7 @@ static bool is_empty_line(const char* text)
 	return (true);
 }
 
-static bool is_valid_syntax(t_command *command)
+static bool	is_valid_syntax(t_command *command)
 {
 	char	*token;
 	char	*next_token;
@@ -68,7 +81,7 @@ static bool is_valid_syntax(t_command *command)
 	return (true);
 }
 
-bool try_init_command(char *text, t_command *out_command)
+bool	try_init_command(char *text, t_command *out_command)
 {
 	out_command->num_token = 0;
 	if (is_empty_line(text))

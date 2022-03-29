@@ -1,5 +1,16 @@
-#include <stdlib.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   as_tree_insert.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: seunghyk <seunghyk@student.42seoul.kr>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/29 19:29:17 by seunghyk          #+#    #+#             */
+/*   Updated: 2022/03/29 19:29:23 by seunghyk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include <stdlib.h>
 #include "as_tree.h"
 
 static t_node	*insert_redirection(t_node *root, t_node *new_node)

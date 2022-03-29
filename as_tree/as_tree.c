@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   as_tree.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: seunghyk <seunghyk@student.42seoul.kr>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/29 19:29:30 by seunghyk          #+#    #+#             */
+/*   Updated: 2022/03/29 19:30:12 by seunghyk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 
 #include "../libft/libft.h"
@@ -29,7 +41,7 @@ static t_cmd_type	get_cmd_type(char *data)
 	return (type);
 }
 
-static void init_node(t_node *node, char *data)
+static void	init_node(t_node *node, char *data)
 {
 	node->cmd_type = get_cmd_type(data);
 	node->data = data;
@@ -37,7 +49,7 @@ static void init_node(t_node *node, char *data)
 	node->right = NULL;
 }
 
-void	destroy_astree(t_node* root)
+void	destroy_astree(t_node *root)
 {
 	if (root == NULL)
 	{
@@ -58,7 +70,7 @@ t_node	*init_astree_malloc(t_command *command)
 	i = 0;
 	while (i < command->num_token)
 	{
-		new_node = (t_node*)malloc(sizeof(t_node));
+		new_node = (t_node *)malloc(sizeof(t_node));
 		init_node(new_node, command->tokens[i]);
 		root = insert_astree(root, new_node);
 		++i;
