@@ -6,7 +6,7 @@
 /*   By: seunghyk <seunghyk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:39:02 by seunghyk          #+#    #+#             */
-/*   Updated: 2022/03/31 16:39:15 by seunghyk         ###   ########.fr       */
+/*   Updated: 2022/03/31 17:47:11 by seunghyk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,22 +55,21 @@ static void	excute_command(char *text)
 	t_node		*root;
 
 	root = NULL;
-	if (try_init_command(text, &command))
+	if (!try_init_command(text, &command))
 	{
-		stdio_back_up();
-		root = init_astree_malloc(&command);
-		execute_recursive(root);
-		destroy_astree(root);
-		stdio_recover();
-		stdio_close_back_up();
+		return ;
 	}
-	return (true);
+	stdio_back_up();
+	root = init_astree_malloc(&command);
+	execute_recursive(root);
+	destroy_astree(root);
+	stdio_recover();
+	stdio_close_back_up();
 }
 
 int	main(int argc, const char **argv, const char **envp)
 {
 	char	*text;
-	int		exit_code;
 
 	(void)argc;
 	(void)argv;
