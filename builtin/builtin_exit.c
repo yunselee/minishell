@@ -6,7 +6,7 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 16:52:24 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/31 17:46:33 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/03/31 18:11:56 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,60 @@
 #include <stdlib.h>
 #include "libft.h"
 #include <stdbool.h>
+#include <limits.h>
 
-static bool	try_atoi(char *str, int *out_num)
+staitc bool	try_atoi2(const char *str, long long *p_out_num)
+{
+	long long	overflow;
+	long long	num;
+
+	overflow = 0;
+	num = 0;
+	while (ft_isdigit(*str))
+	{
+		overflow *= 10;
+		overflow += *str - '0';
+		if (overflow < num)
+			return (false);
+		num = overflow;
+		str++;
+	}
+	if (ft_isdigit(*str) && *str != '\0')
+		return (false);
+	return (true);
+}
+
+static bool	try_atoi(const char *str, long long *p_out_num)
+{
+	long long	num;
+	int			sign;
+
+	num = 0;
+	sign = 0;
+	while (ft_isspace(*str))
+		str++;
+	if (*str == '+' || *str == '-')
+	{
+		if (*str == '-')
+			sign++;
+		str++;
+	}
+	if (!try_atoi2(str, &num))
+	{
+		return (false);
+	}
+	if (sign & 1)
+		num *= -1;
+	*p_out_num = num;
+	return (true);
+}
+
+static bool	try_get_exit_code(char *str, int *out_num)
 {
 	int	num;
 
-	num = ft_atoi(str);
+	if (!try_atoi(str, &num))
+		return (false);
 	num = num & 0x000000FF;
 	*out_num = num;
 	return (true);
@@ -32,19 +80,19 @@ void	builtin_exit(const char **args)
 
 	if (args[1] != NULL && args[2] != NULL)
 	{
-		printf("minishell : exit: too many arguments\n");
+		printf("minishell: exit: too many arguments\n");
 		exit(1);
 	}
 	if (args[1] == NULL)
 		exit(0);
-	if (try_atoi(args[1], &exit_code))
+	if (try_get_exit_code(args[1], &exit_code))
 	{
 		printf("exit\n");
 		exit(exit_code);
 	}
 	else
 	{
-		printf("exit: $s: numeric argument required\n", args[1]);
+		printf("minishell: exit: $s: numeric argument required\n", args[1]);
 		exit(255);
 	}
 }
