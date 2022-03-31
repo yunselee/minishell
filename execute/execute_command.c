@@ -6,7 +6,7 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:16:25 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/31 19:45:32 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/03/31 20:13:58 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ void	execute_recursive(t_node *astree)
 	else if (astree->cmd_type == CMD_TYPE_L_SHIFT \
 		|| astree->cmd_type == CMD_TYPE_LD_SHIFT \
 		|| astree->cmd_type == CMD_TYPE_R_SHIFT \
-		|| astree->cmd_type == CMD_TYPE_LD_SHIFT)
+		|| astree->cmd_type == CMD_TYPE_RD_SHIFT)
 	{
 		set_rdr_recursive(astree);
 		return ;
