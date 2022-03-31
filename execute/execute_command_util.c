@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_command_util.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghyk <seunghyk@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:18:42 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/29 19:33:31 by seunghyk         ###   ########.fr       */
+/*   Updated: 2022/03/31 19:45:43 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,10 @@ void	connect_file_to_std(const char *pathname, \
 		return ;
 	_dup2(file_fd, std_fd);
 	_close(file_fd);
+}
+
+void	close_pointer(int pipe_fd[])
+{
+	close(pipe_fd[0]);
+	close(pipe_fd[1]);
 }
