@@ -6,7 +6,7 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:38:44 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/31 16:57:22 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/03/31 19:37:17 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,11 @@ static void	fork_and_exe(char **args)
 
 	sig_disable();
 	child = _fork();
-	sig_set_child();
 	if (child == CHILD)
 	{
+		sig_set_child();
 		execve_child_process(args);
-		exit (EXIT_FAILURE);
+		exit (127);
 	}
 	wait_pid_and_set_exit_code(child);
 	sig_set();

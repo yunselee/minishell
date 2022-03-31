@@ -6,7 +6,7 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:16:25 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/31 16:32:33 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/03/31 19:45:32 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,39 +33,40 @@ void	connect_file_to_std(const char *pathname, int path_open_flags, \
 			 int path_open_mode, int std_fd);
 void	execute_basic_cmd(t_node *astree);
 void	execute_recursive(t_node *astree);
+void	close_pointer(int pipe_fd[]);
 
-static void	close_pointer(int pipe_fd[])
+static void	set_child(int pipe_fd[])
 {
-	close(pipe_fd[WRITE]);
-	close(pipe_fd[READ]);
+	sig_set_child();
+	close_pointer(pipe_fd);
 }
 
 static void	set_pipe_recursive(t_node *astree)
 {
 	int		pipe_fd[2];
-	pid_t	child;
+	pid_t	child[2];
 
 	_pipe(pipe_fd);
-	child = _fork();
-	if (child == CHILD)
+	sig_disable();
+	child[0] = _fork();
+	if (child[0] == CHILD)
 	{
-		sig_set_child();
 		_dup2(pipe_fd[WRITE], STDOUT_FILENO);
-		close_pointer(pipe_fd);
+		set_child(pipe_fd);
 		execute_recursive(astree->left);
 		exit(EXIT_SUCCESS);
 	}
-	wait_pid_and_set_exit_code(child);
-	child = _fork();
-	if (child == CHILD)
+	child[1] = _fork();
+	if (child[1] == CHILD)
 	{
-		sig_set_child();
 		_dup2(pipe_fd[READ], STDIN_FILENO);
-		close_pointer(pipe_fd);
+		set_child(pipe_fd);
 		execute_recursive(astree->right);
-		exit(EXIT_SUCCESS);
+		exit(exit_code_get_latest());
 	}
-	wait_pid_and_set_exit_code(child);
+	wait_pid_and_set_exit_code(child[0]);
+	wait_pid_and_set_exit_code(child[1]);
+	sig_set();
 	close_pointer(pipe_fd);
 }
 

@@ -6,20 +6,30 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 16:12:58 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/31 16:32:36 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/03/31 19:30:41 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <signal.h>
+#include <stdio.h>
+#include "sig.h"
 #include <stdlib.h>
 
 static void	sig_int_child(int signal)
 {
-	(void)signal;
+	if (signal == SIGINT)
+	{
+		printf("\n\n");
+	}
+	if (signal == SIGQUIT)
+	{
+		printf("Quit: 3\n");
+	}
 	exit(0);
 }
 
 void	sig_set_child(void)
 {
 	signal(SIGINT, sig_int_child);
+	signal(SIGQUIT, sig_int_child);
 }
