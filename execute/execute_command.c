@@ -6,7 +6,7 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:16:25 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/31 20:21:37 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/03/31 22:27:28 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,6 @@ void	execute_basic_cmd(t_node *astree);
 void	execute_recursive(t_node *astree);
 void	close_pointer(int pipe_fd[]);
 
-static void	set_child(int pipe_fd[])
-{
-	sig_set_child();
-	close_pointer(pipe_fd);
-}
-
 static void	set_pipe_recursive(t_node *astree)
 {
 	int		pipe_fd[2];
@@ -52,7 +46,7 @@ static void	set_pipe_recursive(t_node *astree)
 	if (child[0] == CHILD)
 	{
 		_dup2(pipe_fd[WRITE], STDOUT_FILENO);
-		set_child(pipe_fd);
+		close_pointer(pipe_fd);
 		execute_recursive(astree->left);
 		exit(EXIT_SUCCESS);
 	}
@@ -61,7 +55,7 @@ static void	set_pipe_recursive(t_node *astree)
 	if (child[1] == CHILD)
 	{
 		_dup2(pipe_fd[READ], STDIN_FILENO);
-		set_child(pipe_fd);
+		close_pointer(pipe_fd);
 		execute_recursive(astree->right);
 		exit(exit_code_get_latest());
 	}

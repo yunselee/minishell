@@ -6,7 +6,7 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:38:44 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/31 21:06:03 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/03/31 22:25:41 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,18 +57,13 @@ static void	fork_and_exe(char **args)
 {
 	pid_t	child;
 
-	sig_disable();
+	if (is_minishell(args[0]))
+		sig_disable();
+	else
+		sig_set_execve();
 	child = _fork();
 	if (child == CHILD)
 	{
-		if (is_minishell(args[0]))
-		{
-			sig_set();
-		}
-		else
-		{
-			sig_set_child();
-		}
 		execve_child_process(args);
 		exit (127);
 	}

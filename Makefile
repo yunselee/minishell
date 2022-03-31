@@ -64,7 +64,7 @@ SRCS			= ./main.c \
 				 ./env_variable/env_variable_destroy.c \
 				 ./exit_code/exit_code.c \
 				 ./sig/sig.c \
-				 ./sig/sig_child.c \
+				 ./sig/sig_exe.c \
 				 ./stdio_manager/stdio_manager.c \
 
 
