@@ -6,7 +6,7 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:18:42 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/31 21:05:18 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/03/31 21:07:51 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <stdbool.h>
 #include "../allow_function/allow_function.h"
 #include "../exit_code/exit_code.h"
+#include "libft.h"
 
 void	wait_pid_and_set_exit_code(pid_t child)
 {

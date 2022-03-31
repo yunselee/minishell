@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghyk <seunghyk@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:39:02 by seunghyk          #+#    #+#             */
-/*   Updated: 2022/03/31 17:47:11 by seunghyk         ###   ########.fr       */
+/*   Updated: 2022/03/31 21:08:51 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	main(int argc, const char **argv, const char **envp)
 	sig_set();
 	while (1)
 	{
-		text = readline("Prompt :");
+		text = readline("\e[32mPrompt :\e[0m");
 		{
 			if (text == NULL)
 				return (EXIT_SUCCESS);
