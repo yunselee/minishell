@@ -6,7 +6,7 @@
 /*   By: seunghyk <seunghyk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:39:02 by seunghyk          #+#    #+#             */
-/*   Updated: 2022/03/29 19:52:23 by seunghyk         ###   ########.fr       */
+/*   Updated: 2022/03/31 16:39:15 by seunghyk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,21 +49,14 @@ static void	register_all_env(const char **envp)
 	}
 }
 
-static bool	try_excute_command(char *text, int *out_exit_code)
+static void	excute_command(char *text)
 {
 	t_command	command;
 	t_node		*root;
 
-	*out_exit_code = 0;
 	root = NULL;
 	if (try_init_command(text, &command))
 	{
-		if (ft_strcmp(command.tokens[0], "exit") == 0)
-		{
-			if (1 < command.num_token)
-				*out_exit_code = ft_atoi(command.tokens[1]);
-			return (false);
-		}
 		stdio_back_up();
 		root = init_astree_malloc(&command);
 		execute_recursive(root);
@@ -89,11 +82,7 @@ int	main(int argc, const char **argv, const char **envp)
 		{
 			if (text == NULL)
 				return (EXIT_SUCCESS);
-			if (!try_excute_command(text, &exit_code))
-			{
-				free(text);
-				return (exit_code);
-			}
+			excute_command(text);
 		}
 		free(text);
 	}
