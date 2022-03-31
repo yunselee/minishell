@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_exit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghyk <seunghyk@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 16:52:24 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/31 18:26:47 by seunghyk         ###   ########.fr       */
+/*   Updated: 2022/03/31 18:27:47 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void	builtin_exit(const char **args)
 {
 	int	exit_code;
 
+	printf("exit\n");
 	if (args[1] != NULL && args[2] != NULL)
 	{
 		printf("minishell: exit: too many arguments\n");
@@ -89,7 +90,6 @@ void	builtin_exit(const char **args)
 		exit(0);
 	if (try_get_exit_code(args[1], &exit_code))
 	{
-		printf("exit\n");
 		exit(exit_code);
 	}
 	else
