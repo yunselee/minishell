@@ -6,7 +6,7 @@
 /*   By: seunghyk <seunghyk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 17:03:30 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/31 16:16:03 by seunghyk         ###   ########.fr       */
+/*   Updated: 2022/03/31 16:18:31 by seunghyk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,7 @@ void	builtin_export(char **args)
 		sort(envs);
 		while (envs[i] != NULL)
 		{
-			printf("declare -x %s\n", envs[i]);
-			i++;
+			printf("declare -x %s\n", envs[i++]);
 		}
 		destroy_envs(envs);
 	}
