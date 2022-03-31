@@ -6,7 +6,7 @@
 /*   By: seunghyk <seunghyk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 17:03:30 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/31 17:52:16 by seunghyk         ###   ########.fr       */
+/*   Updated: 2022/03/31 18:43:17 by seunghyk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	builtin_export(char **args)
 		{
 			printf("export: \'%s=%s\': not a valid identifier\n", key, value);
 			exit_code_set(1);
-			continue;
+			continue ;
 		}
 		register_env_variable(key, value);
 	}
