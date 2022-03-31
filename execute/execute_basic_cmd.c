@@ -6,7 +6,7 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:38:44 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/31 19:37:17 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/03/31 21:06:03 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 // fork하고 내부에서 처리
 #define CHILD 0
 
+bool	is_minishell(const char *arg);
 void	wait_pid_and_set_exit_code(pid_t child);
 
 // no return
@@ -60,7 +61,14 @@ static void	fork_and_exe(char **args)
 	child = _fork();
 	if (child == CHILD)
 	{
-		sig_set_child();
+		if (is_minishell(args[0]))
+		{
+			sig_set();
+		}
+		else
+		{
+			sig_set_child();
+		}
 		execve_child_process(args);
 		exit (127);
 	}

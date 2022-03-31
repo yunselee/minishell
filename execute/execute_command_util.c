@@ -6,11 +6,12 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:18:42 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/31 19:45:43 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/03/31 21:05:18 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stdbool.h>
 #include "../allow_function/allow_function.h"
 #include "../exit_code/exit_code.h"
 
@@ -37,4 +38,13 @@ void	close_pointer(int pipe_fd[])
 {
 	close(pipe_fd[0]);
 	close(pipe_fd[1]);
+}
+
+bool	is_minishell(const char *arg)
+{
+	const char	*minishell = "minishell";
+	const int	minishell_len = ft_strlen(minishell);
+	const int	arglen = ft_strlen(arg);
+
+	return (ft_strcmp(arg + arglen - minishell_len, minishell) == 0);
 }
