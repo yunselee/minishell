@@ -6,7 +6,7 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:18:42 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/31 21:07:51 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/03/31 22:39:26 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	wait_pid_and_set_exit_code(pid_t child)
 	int	exit_code;
 
 	_waitpid(child, &exit_code, 0);
+	exit_code = (exit_code >> 8) & 0x000000ff;
 	exit_code_set(exit_code);
 }
 
