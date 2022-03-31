@@ -6,7 +6,7 @@
 /*   By: seunghyk <seunghyk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 16:52:24 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/31 18:21:47 by seunghyk         ###   ########.fr       */
+/*   Updated: 2022/03/31 18:26:47 by seunghyk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static bool	try_atoi2(const char *str, long long *p_out_num)
 		num = overflow;
 		str++;
 	}
-	if (ft_isdigit(*str) && *str != '\0')
+	if (*str != '\0')
 		return (false);
 	*p_out_num = num;
 	return (true);
