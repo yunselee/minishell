@@ -3,20 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_exit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: seunghyk <seunghyk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 16:52:24 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/31 18:11:56 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/03/31 18:21:47 by seunghyk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 #include <stdlib.h>
+#include <stdio.h>
 #include "libft.h"
 #include <stdbool.h>
 #include <limits.h>
 
-staitc bool	try_atoi2(const char *str, long long *p_out_num)
+static bool	try_atoi2(const char *str, long long *p_out_num)
 {
 	long long	overflow;
 	long long	num;
@@ -34,6 +35,7 @@ staitc bool	try_atoi2(const char *str, long long *p_out_num)
 	}
 	if (ft_isdigit(*str) && *str != '\0')
 		return (false);
+	*p_out_num = num;
 	return (true);
 }
 
@@ -62,14 +64,14 @@ static bool	try_atoi(const char *str, long long *p_out_num)
 	return (true);
 }
 
-static bool	try_get_exit_code(char *str, int *out_num)
+static bool	try_get_exit_code(const char *str, int *out_num)
 {
-	int	num;
+	long long	num;
 
 	if (!try_atoi(str, &num))
 		return (false);
 	num = num & 0x000000FF;
-	*out_num = num;
+	*out_num = (int)num;
 	return (true);
 }
 
@@ -92,7 +94,7 @@ void	builtin_exit(const char **args)
 	}
 	else
 	{
-		printf("minishell: exit: $s: numeric argument required\n", args[1]);
+		printf("minishell: exit: %s: numeric argument required\n", args[1]);
 		exit(255);
 	}
 }
