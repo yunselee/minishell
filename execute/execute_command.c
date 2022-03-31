@@ -6,7 +6,7 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:16:25 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/31 20:13:58 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/03/31 20:21:37 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ static void	set_pipe_recursive(t_node *astree)
 		execute_recursive(astree->left);
 		exit(EXIT_SUCCESS);
 	}
+	close(pipe_fd[WRITE]);
 	child[1] = _fork();
 	if (child[1] == CHILD)
 	{
@@ -64,10 +65,8 @@ static void	set_pipe_recursive(t_node *astree)
 		execute_recursive(astree->right);
 		exit(exit_code_get_latest());
 	}
-	wait_pid_and_set_exit_code(child[0]);
-	wait_pid_and_set_exit_code(child[1]);
-	sig_set();
-	close_pointer(pipe_fd);
+	close(pipe_fd[READ]), wait_pid_and_set_exit_code(child[0]);
+	wait_pid_and_set_exit_code(child[1]), sig_set();
 }
 
 static void	execute_heredoc(t_node *astree)
