@@ -6,7 +6,7 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 17:00:30 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/26 17:35:37 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/03/31 16:57:37 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,6 @@ void	builtin_pwd(void);
 void	builtin_export(char **args);
 void	builtin_env(void);
 void	builtin_unset(const char **args);
+void	builtin_exit(const char **args);
 
 #endif /* COMMAND_H */

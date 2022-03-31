@@ -6,7 +6,7 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:16:25 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/29 19:18:46 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/03/31 16:32:33 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <stdio.h>
 #include <readline/readline.h>
 #include "../stdio_manager/stdio_manager.h"
+#include "sig.h"
 
 #define CHILD 0
 
@@ -33,6 +34,12 @@ void	connect_file_to_std(const char *pathname, int path_open_flags, \
 void	execute_basic_cmd(t_node *astree);
 void	execute_recursive(t_node *astree);
 
+static void	close_pointer(int pipe_fd[])
+{
+	close(pipe_fd[WRITE]);
+	close(pipe_fd[READ]);
+}
+
 static void	set_pipe_recursive(t_node *astree)
 {
 	int		pipe_fd[2];
@@ -42,17 +49,24 @@ static void	set_pipe_recursive(t_node *astree)
 	child = _fork();
 	if (child == CHILD)
 	{
+		sig_set_child();
 		_dup2(pipe_fd[WRITE], STDOUT_FILENO);
-		close(pipe_fd[WRITE]);
-		close(pipe_fd[READ]);
+		close_pointer(pipe_fd);
 		execute_recursive(astree->left);
 		exit(EXIT_SUCCESS);
 	}
 	wait_pid_and_set_exit_code(child);
-	close(pipe_fd[WRITE]);
-	_dup2(pipe_fd[READ], STDIN_FILENO);
-	close(pipe_fd[READ]);
-	execute_recursive(astree->right);
+	child = _fork();
+	if (child == CHILD)
+	{
+		sig_set_child();
+		_dup2(pipe_fd[READ], STDIN_FILENO);
+		close_pointer(pipe_fd);
+		execute_recursive(astree->right);
+		exit(EXIT_SUCCESS);
+	}
+	wait_pid_and_set_exit_code(child);
+	close_pointer(pipe_fd);
 }
 
 static void	execute_heredoc(t_node *astree)

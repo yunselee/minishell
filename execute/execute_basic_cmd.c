@@ -6,7 +6,7 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:38:44 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/29 19:38:45 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/03/31 16:57:22 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ static void	fork_and_exe(char **args)
 
 	sig_disable();
 	child = _fork();
+	sig_set_child();
 	if (child == CHILD)
 	{
 		execve_child_process(args);
@@ -125,6 +126,8 @@ void	execute_basic_cmd(t_node *astree)
 		builtin_export(args);
 	else if (ft_strcmp(command, "unset") == 0)
 		builtin_unset((const char **)args);
+	else if (ft_strcmp(command, "exit") == 0)
+		builtin_exit((const char **)args);
 	else
 		fork_and_exe(args);
 	clear_args(args);
