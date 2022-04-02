@@ -6,7 +6,7 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:16:25 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/31 22:27:28 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/04/02 17:16:49 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,14 +96,11 @@ static void	set_rdr_recursive(t_node *astree)
 	int			file_fd;
 
 	if (astree->cmd_type == CMD_TYPE_R_SHIFT)
-	{
-		connect_file_to_std(path, O_WRONLY | O_CREAT, S_IRWXU, STDOUT_FILENO);
-	}
+		connect_file_to_std(path, O_TRUNC | O_WRONLY | \
+									O_CREAT, S_IRWXU, STDOUT_FILENO);
 	else if (astree->cmd_type == CMD_TYPE_RD_SHIFT)
-	{
 		connect_file_to_std(path, O_WRONLY | O_CREAT | O_APPEND, \
 									S_IRWXU, STDOUT_FILENO);
-	}
 	else if (astree->cmd_type == CMD_TYPE_L_SHIFT)
 	{
 		file_fd = _open(path, O_RDONLY, S_IRWXU);
