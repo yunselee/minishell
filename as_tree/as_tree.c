@@ -6,18 +6,29 @@
 /*   By: seunghyk <seunghyk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:29:30 by seunghyk          #+#    #+#             */
-/*   Updated: 2022/03/29 19:30:12 by seunghyk         ###   ########.fr       */
+/*   Updated: 2022/04/02 17:23:31 by seunghyk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <stdbool.h>
 
 #include "../libft/libft.h"
 #include "as_tree.h"
 
+static t_cmd_type	set_before(t_cmd_type *out_before, t_cmd_type cur_type)
+{
+	if (cur_type == CMD_TYPE_ARG && CMD_TYPE_L_SHIFT <= *out_before)
+		*out_before = CMD_TYPE_NONE;
+	else
+		*out_before = cur_type;
+	return (cur_type);
+}
+
 static t_cmd_type	get_cmd_type(char *data)
 {
 	static t_cmd_type	before = CMD_TYPE_NONE;
+	static bool			is_command = true;
 	t_cmd_type			type;
 
 	if (ft_strcmp(data, ">") == 0)
@@ -29,16 +40,18 @@ static t_cmd_type	get_cmd_type(char *data)
 	else if (ft_strcmp(data, "<<") == 0)
 		type = CMD_TYPE_LD_SHIFT;
 	else if (ft_strcmp(data, "|") == 0)
+	{
 		type = CMD_TYPE_PIPE;
-	else if (before == CMD_TYPE_NONE || before == CMD_TYPE_PIPE)
+		is_command = true;
+	}
+	else if (is_command && (before == CMD_TYPE_NONE || before == CMD_TYPE_PIPE))
+	{
 		type = CMD_TYPE_COMMAND;
+		is_command = false;
+	}
 	else
 		type = CMD_TYPE_ARG;
-	if (type == CMD_TYPE_ARG && CMD_TYPE_L_SHIFT <= before)
-		before = CMD_TYPE_NONE;
-	else
-		before = type;
-	return (type);
+	return (set_before(&before, type));
 }
 
 static void	init_node(t_node *node, char *data)

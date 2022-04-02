@@ -6,7 +6,7 @@
 /*   By: seunghyk <seunghyk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:29:58 by seunghyk          #+#    #+#             */
-/*   Updated: 2022/03/31 20:51:44 by seunghyk         ###   ########.fr       */
+/*   Updated: 2022/04/02 17:03:50 by seunghyk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "command_initializer.h"
 #include "../libft/libft.h"
 #include <stdio.h>
+
 static char	*init_plain_command(char *text, t_command *out_command)
 {
 	char	*p_token;
@@ -55,7 +56,9 @@ static char	*init_single_quot_command(char *text, t_command *out_command)
 {
 	char	*p_token;
 	char	*p_end;
+	char	before;
 
+	before = *(text - 1);
 	text++;
 	p_token = out_command->tokens[out_command->num_token++];
 	p_end = ft_strchr(text, '\'');
@@ -65,6 +68,13 @@ static char	*init_single_quot_command(char *text, t_command *out_command)
 	}
 	ft_strlcpy(p_token, text, p_end - text + 1);
 	reinterpret_escape(p_token, false);
+	if (before == '\'' || before == '\"')
+	{
+		ft_strlcat(out_command->tokens[out_command->num_token - 2],
+			out_command->tokens[out_command->num_token - 1],
+			ft_strlen(out_command->tokens[out_command->num_token - 1]) + 2);
+		out_command->num_token--;
+	}
 	return (p_end);
 }
 
@@ -72,7 +82,9 @@ static char	*init_double_quot_command(char *text, t_command *out_command)
 {
 	char	*p_token;
 	char	*p_end;
+	char	before;
 
+	before = *(text - 1);
 	text++;
 	p_token = out_command->tokens[out_command->num_token++];
 	p_end = ft_strchr(text, '\"');
@@ -83,6 +95,13 @@ static char	*init_double_quot_command(char *text, t_command *out_command)
 	ft_strlcpy(p_token, text, p_end - text + 1);
 	reinterpret_env(p_token);
 	reinterpret_escape(p_token, false);
+	if (before == '\'' || before == '\"')
+	{
+		ft_strlcat(out_command->tokens[out_command->num_token - 2],
+			out_command->tokens[out_command->num_token - 1],
+			ft_strlen(out_command->tokens[out_command->num_token - 1]) + 2);
+		out_command->num_token--;
+	}
 	return (p_end);
 }
 
