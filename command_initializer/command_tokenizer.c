@@ -6,7 +6,7 @@
 /*   By: seunghyk <seunghyk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:29:58 by seunghyk          #+#    #+#             */
-/*   Updated: 2022/04/02 17:03:50 by seunghyk         ###   ########.fr       */
+/*   Updated: 2022/04/02 18:39:50 by seunghyk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ static char	*init_single_quot_command(char *text, t_command *out_command)
 			out_command->tokens[out_command->num_token - 1],
 			ft_strlen(out_command->tokens[out_command->num_token - 1]) + 2);
 		out_command->num_token--;
+		printf("%s\n", out_command->tokens[out_command->num_token - 2]);
 	}
 	return (p_end);
 }
