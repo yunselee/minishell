@@ -6,7 +6,7 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 17:04:06 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/29 16:48:11 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/04/02 19:58:31 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,22 @@
 #include <stdlib.h>
 #include "../libft/libft.h"
 
-#define ARG_NEWLINE "-n"
+#define ARG "n"
+
+static bool	in_arg(const char *str, const char *arg)
+{
+	int	i;
+
+	i = 1;
+	while (str[i] != '\0')
+	{
+		if (ft_strrchr(arg, str[i]) == NULL)
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
 
 void	builtin_echo(const char **args)
 {
@@ -26,10 +41,13 @@ void	builtin_echo(const char **args)
 
 	i = 1;
 	is_newline = true;
-	if (args[i] != NULL && ft_strcmp(args[i], ARG_NEWLINE) == 0)
+	if (args[i] != NULL && args[i][0] == '-')
 	{
-		is_newline = false;
-		i++;
+		if (in_arg(args[i], ARG))
+		{
+			is_newline = false;
+			i++;
+		}
 	}
 	while (args[i] != NULL)
 	{
