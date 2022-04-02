@@ -6,7 +6,7 @@
 /*   By: seunghyk <seunghyk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:29:56 by seunghyk          #+#    #+#             */
-/*   Updated: 2022/04/02 16:13:31 by seunghyk         ###   ########.fr       */
+/*   Updated: 2022/04/02 19:00:26 by seunghyk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	reinterpret_env(char *token)
 	while (p_key != NULL)
 	{
 		p_end = p_key + 1;
-		while (ft_isalnum(*p_end) || *p_end == '?')
+		while (!ft_isspace(*p_end) && *p_end != '\0')
 			p_end++;
 		ft_strlcpy(copied, p_key + 1, p_end - p_key);
 		p_value = get_env_variable_or_null(copied);
