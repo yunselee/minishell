@@ -6,7 +6,7 @@
 #    By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/13 16:09:04 by yunselee          #+#    #+#              #
-#    Updated: 2022/02/25 20:07:09 by yunselee         ###   ########.fr        #
+#    Updated: 2022/04/02 18:42:54 by yunselee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,7 @@ SOURCES =	ft_abs.c \
 			ft_tolower.c \
 			ft_toupper.c \
 			get_next_line.c \
+			ft_strcat.c \
 
 BONUS =		ft_lstadd_back.c \
 			ft_lstadd_front.c \
