@@ -1,14 +1,18 @@
 NAME			= minishell
 
 CC				= gcc
-CFLAGS			= -Wall -Werror -Wextra
+CFLAGS			= -Wall -Werror -Wextra -fsanitize=address
+
+
+#LDFLAGS="$LDFLAGS -fsanitize=address"
 
 ifeq ($(DEBUG),true)
 	CDEBUG = -g
 endif
 
-READLINE_HEADER	= -I ~/.brew/opt/readline/include
+READLINE_HEADER	= -I ./readline/include
 READLINE_FOLDER	= -L ~/.brew/opt/readline/lib -lreadline -lhistory
+#READLINE_FOLDER	= -L ./readline/lib -llibreadline -llibhistory
 
 
 LIBFT			= ./libft/libft.a
@@ -82,7 +86,7 @@ all: $(NAME)
 
 # minishell
 $(NAME): $(OBJS) $(LIBFT) $(ALLOW_FUNCTION)
-	$(CC) $(CDEBUG) $(READLINE_FOLDER) $^ -o $@ -g
+	$(CC) $(CDEBUG) $(READLINE_FOLDER) $^ -o $@ -g -fsanitize=address
 	
 
 # -I $(INCS_DIR) $(READLINE_HEADER)
