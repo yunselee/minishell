@@ -6,7 +6,7 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 16:52:24 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/31 18:27:47 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/04/02 15:59:28 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,26 +75,26 @@ static bool	try_get_exit_code(const char *str, int *out_num)
 	return (true);
 }
 
-// no return
 void	builtin_exit(const char **args)
 {
 	int	exit_code;
 
 	printf("exit\n");
-	if (args[1] != NULL && args[2] != NULL)
-	{
-		printf("minishell: exit: too many arguments\n");
-		exit(1);
-	}
 	if (args[1] == NULL)
 		exit(0);
 	if (try_get_exit_code(args[1], &exit_code))
 	{
+		if (args[1] != NULL && args[2] != NULL)
+		{
+			printf("minishell: %s: too many arguments\n", args[0]);
+			return ;
+		}
 		exit(exit_code);
 	}
 	else
 	{
-		printf("minishell: exit: %s: numeric argument required\n", args[1]);
+		printf("minishell: %s: %s: numeric argument required\n", \
+			args[0], args[1]);
 		exit(255);
 	}
 }
