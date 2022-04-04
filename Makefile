@@ -11,8 +11,7 @@ ifeq ($(DEBUG),true)
 endif
 
 READLINE_HEADER	= -I ./readline/include
-READLINE_FOLDER	= -L ~/.brew/opt/readline/lib -lreadline -lhistory
-#READLINE_FOLDER	= -L ./readline/lib -llibreadline -llibhistory
+READLINE_FOLDER	= -L ./readline/lib -lreadline -lhistory
 
 
 LIBFT			= ./libft/libft.a
