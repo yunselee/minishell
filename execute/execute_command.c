@@ -6,7 +6,7 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:16:25 by yunselee          #+#    #+#             */
-/*   Updated: 2022/04/05 19:16:13 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/04/05 21:57:34 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ static void	set_pipe_recursive(t_node *astree)
 		exit(exit_code_get_latest());
 	}
 	close_pointer(pipe_fd);
-	wait_pid_and_set_exit_code(child[1]);
 	wait_pid_and_set_exit_code(child[0]);
+	wait_pid_and_set_exit_code(child[1]);
 	sig_set();
 }
 
