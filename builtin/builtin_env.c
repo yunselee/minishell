@@ -6,7 +6,7 @@
 /*   By: seunghyk <seunghyk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 14:49:57 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/29 19:07:34 by seunghyk         ###   ########.fr       */
+/*   Updated: 2022/04/05 16:42:06 by seunghyk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,19 @@
 
 void	builtin_env(void)
 {
-	char	**all_env;
-	int		i;
+	t_env_variable_list	*variables;
+	int					i;
 
-	all_env = get_all_env_malloc();
+	variables = get_env_list();
 	i = 0;
-	while (all_env[i] != NULL)
+	while (i < variables->size)
 	{
-		printf("%s\n", all_env[i]);
-		i++;
+		if (*(variables->list[i].value) != '\0')
+		{
+			printf("%s=%s\n", variables->list[i].key,
+				variables->list[i].value);
+		}
+		++i;
 	}
-	destroy_envs(all_env);
 	exit_code_set(EXIT_SUCCESS);
 }

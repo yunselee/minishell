@@ -6,7 +6,7 @@
 /*   By: seunghyk <seunghyk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 17:03:30 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/31 18:43:17 by seunghyk         ###   ########.fr       */
+/*   Updated: 2022/04/05 16:31:42 by seunghyk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,25 @@ static bool	is_valid_key(const char *key)
 static void	print_sorted_envs(void)
 {
 	char	**envs;
+	char	*value;
 	int		i;
 
 	i = 0;
 	envs = get_all_env_malloc();
 	sort(envs);
 	while (envs[i] != NULL)
-		printf("declare -x %s\n", envs[i++]);
+	{
+		value = ft_strchr(envs[i], '=');
+		if (*(value + 1) == '\0')
+		{
+			printf("declare -x %s\n", tokenize(envs[i], "="));
+		}
+		else
+		{
+			printf("declare -x %s\n", envs[i]);
+		}
+		++i;
+	}
 	destroy_envs(envs);
 }
 

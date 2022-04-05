@@ -61,7 +61,7 @@ SRCS			= ./main.c \
 							as_tree_insert.c \
 				) \
 				 ./env_variable/env_variable.c \
-				 ./env_variable/env_variable_destroy.c \
+				 ./env_variable/env_variable_malloc.c \
 				 ./exit_code/exit_code.c \
 				 ./sig/sig.c \
 				 ./sig/sig_exe.c \

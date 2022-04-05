@@ -6,7 +6,7 @@
 /*   By: seunghyk <seunghyk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 18:36:23 by seunghyk          #+#    #+#             */
-/*   Updated: 2022/03/31 18:36:25 by seunghyk         ###   ########.fr       */
+/*   Updated: 2022/04/05 16:43:57 by seunghyk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,26 @@
 
 static int	partition(char **envs, int left, int right)
 {
-	char	*pivotKey;
-	int		pivotPos;
+	char	*pivot_key;
+	int		pivot_pos;
 	int		i;
 	char	*temp;
 
-	pivotKey = envs[right];
-	pivotPos = left;
+	pivot_key = envs[right];
+	pivot_pos = left;
 	i = left;
 	while (i < right)
 	{
-		if (0 < ft_strcmp(pivotKey, envs[i]))
+		if (0 < ft_strcmp(pivot_key, envs[i]))
 		{
-			temp = envs[pivotPos];
-			envs[pivotPos] = envs[i];
+			temp = envs[pivot_pos];
+			envs[pivot_pos] = envs[i];
 			envs[i] = temp;
-			++pivotPos;
+			++pivot_pos;
 		}
 		++i;
 	}
-	return (pivotPos);
+	return (pivot_pos);
 }
 
 static void	sort_recursive(char **envs, int left, int right)
