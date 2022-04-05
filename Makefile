@@ -97,8 +97,11 @@ $(OBJS_DIR):
 	@mkdir -p $@
 
 $(READLINE) :
-	-c ./readline ./readline/configure
-	$(MAKE) -c ./readline install-static
+	cd ./readline
+	./readline/configure
+	$(MAKE)  install-static
+	cd ..
+
 # libft
 $(LIBFT):
 	$(MAKE) -C ./libft all
