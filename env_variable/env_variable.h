@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_variable.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghyk <seunghyk@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:30:08 by seunghyk          #+#    #+#             */
-/*   Updated: 2022/04/05 16:45:04 by seunghyk         ###   ########.fr       */
+/*   Updated: 2022/04/05 18:29:34 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_env_variable_list
 	int				size;
 }				t_env_variable_list;
 
-const char			*get_env_variable_or_null(const char *key);
+char				*get_env_variable_or_null(const char *key);
 void				register_env_variable(const char *key,
 						const char *value_or_null);
 void				remove_env_variable(const char *key);

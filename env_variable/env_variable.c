@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_variable.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghyk <seunghyk@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:30:05 by seunghyk          #+#    #+#             */
-/*   Updated: 2022/04/05 16:16:25 by seunghyk         ###   ########.fr       */
+/*   Updated: 2022/04/05 18:24:23 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	index_of_env(const char *key)
 	return (-1);
 }
 
-const char	*get_env_variable_or_null(const char *key)
+char	*get_env_variable_or_null(const char *key)
 {
 	static char	exit_code[32];
 	char		*temp;

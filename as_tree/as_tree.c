@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   as_tree.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghyk <seunghyk@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:29:30 by seunghyk          #+#    #+#             */
-/*   Updated: 2022/04/05 18:13:21 by seunghyk         ###   ########.fr       */
+/*   Updated: 2022/04/05 18:14:58 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,5 @@ t_node	*init_astree_malloc(t_command *command)
 		root = insert_astree(root, new_node);
 		++i;
 	}
-	print_tree(root);
 	return (root);
 }
