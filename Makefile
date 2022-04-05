@@ -12,7 +12,9 @@ endif
 
 READLINE_HEADER	= -I ./readline/include
 
-READLINE	=  ./readline/libreadline.a ./readline/libhistory.a -lncurses -ltermcap
+READLINE	=  ./readline/libreadline.a ./readline/libhistory.a
+
+RFLAG	= -lncurses -ltermcap
 
 LIBFT			= ./libft/libft.a
 ALLOW_FUNCTION		= ./allow_function/allow_function.a
@@ -84,8 +86,8 @@ all: $(NAME)
 #  -I $(INCS_DIR)  $(READLINE_HEADER)
 
 # minishell
-$(NAME): $(OBJS) $(LIBFT) $(ALLOW_FUNCTION)  
-	$(CC) $(CDEBUG) $(READLINE) $^ -o $@ -g -fsanitize=address
+$(NAME): $(OBJS) $(LIBFT) $(ALLOW_FUNCTION) $(READLINE)
+	$(CC) $(CDEBUG) $(RFLAG) $^ -o $@ -g -fsanitize=address
 	
 
 # -I $(INCS_DIR) $(READLINE_HEADER)
@@ -97,10 +99,7 @@ $(OBJS_DIR):
 	@mkdir -p $@
 
 $(READLINE) :
-	cd ./readline
-	./readline/configure
-	$(MAKE)  install-static
-	cd ..
+	cd readline && ./configure && make
 
 # libft
 $(LIBFT):
