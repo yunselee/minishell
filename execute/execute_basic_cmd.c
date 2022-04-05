@@ -6,7 +6,7 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:38:44 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/31 22:25:41 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/04/05 18:24:59 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,20 @@ static void	execve_child_process(char **args)
 	int		i;
 
 	i = 0;
+	p_cmd = get_env_variable_or_null("PATH");
 	p_envp = get_all_env_malloc();
-	p_env_path = ft_split(get_env_variable_or_null("PATH"), ':');
-	while (p_env_path[i] != NULL)
+	if (p_cmd != NULL)
 	{
-		p_tmp = ft_strjoin(p_env_path[i], "/");
-		p_cmd = ft_strjoin(p_tmp, args[0]);
-		_execve(p_cmd, args, p_envp);
-		_free(p_tmp);
-		_free(p_cmd);
-		i++;
+		p_env_path = ft_split(p_cmd, ':');
+		while (p_env_path[i] != NULL)
+		{
+			p_tmp = ft_strjoin(p_env_path[i], "/");
+			p_cmd = ft_strjoin(p_tmp, args[0]);
+			_execve(p_cmd, args, p_envp);
+			_free(p_tmp);
+			_free(p_cmd);
+			i++;
+		}
 	}
 	_execve(args[0], args, p_envp);
 	printf("%s : command not found\n", args[0]);

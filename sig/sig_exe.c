@@ -6,7 +6,7 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 16:12:58 by yunselee          #+#    #+#             */
-/*   Updated: 2022/04/05 17:10:51 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/04/05 18:29:53 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,7 @@ void	sig_set_execve(void)
 static void	sig_int_heredoc(int signal)
 {
 	(void)signal;
-	//rl_on_new_line();
-	//rl_redisplay();
-	printf("%s%c[K\n",HEREDOC_PROMPT, 27);
-	//rl_on_new_line();
+	printf("%s%c[K\n", HEREDOC_PROMPT, 27);
 	exit(EXIT_FAILURE);
 }
 
