@@ -1,15 +1,20 @@
 NAME			= minishell
 
 CC				= gcc
-CFLAGS			= -Wall -Werror -Wextra
+CFLAGS			= -Wall -Werror -Wextra -fsanitize=address
+
+
+#LDFLAGS="$LDFLAGS -fsanitize=address"
 
 ifeq ($(DEBUG),true)
 	CDEBUG = -g
 endif
 
-READLINE_HEADER	= -I ~/.brew/opt/readline/include
-READLINE_FOLDER	= -L ~/.brew/opt/readline/lib -lreadline -lhistory
+READLINE_HEADER	= -I ./readline/include
 
+READLINE	=  ./readline/libreadline.a ./readline/libhistory.a
+
+RFLAG	= -lncurses -ltermcap
 
 LIBFT			= ./libft/libft.a
 ALLOW_FUNCTION		= ./allow_function/allow_function.a
@@ -81,8 +86,8 @@ all: $(NAME)
 #  -I $(INCS_DIR)  $(READLINE_HEADER)
 
 # minishell
-$(NAME): $(OBJS) $(LIBFT) $(ALLOW_FUNCTION)
-	$(CC) $(CDEBUG) $(READLINE_FOLDER) $^ -o $@ -g
+$(NAME): $(OBJS) $(LIBFT) $(ALLOW_FUNCTION) $(READLINE)
+	$(CC) $(CDEBUG) $(RFLAG) $^ -o $@ -g -fsanitize=address
 	
 
 # -I $(INCS_DIR) $(READLINE_HEADER)
@@ -93,6 +98,8 @@ $(OBJS_DIR)/%.o: %.c | $(OBJS_DIR)
 $(OBJS_DIR):
 	@mkdir -p $@
 
+$(READLINE) :
+	cd readline && ./configure && make
 
 # libft
 $(LIBFT):
@@ -103,6 +110,7 @@ $(ALLOW_FUNCTION) :
 
 # clean, fclean, re
 clean: 
+	$(RM) -r $(OBJS_DIR)
 	$(MAKE) -C ./libft clean
 	$(MAKE) -C ./allow_function clean
 	$(RM) -r $(OBJS_DIR)
