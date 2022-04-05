@@ -6,7 +6,7 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 16:51:35 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/31 21:30:00 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/04/05 13:35:57 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <stdlib.h>
+
+extern void	rl_replace_line(const char *a, int b);
 
 static void	sig_int(int signal)
 {
