@@ -1,2 +1,3 @@
-norminette */*.c */*.h *.c
-norminette */*.c */*.h *.c | grep Error
+norminette command_initializer/*.c command_initializer/*.h  stdio_manager/*.c stdio_manager/*.h  env_variable/*.c env_variable/*.h  allow_function/*.c allow_function/*.h  execute/*.c execute/*.h  objects/*.c objects/*.h  as_tree/*.c as_tree/*.h  exit_code/*.c exit_code/*.h  libft/*.c libft/*.h  builtin/*.c builtin/*.h  sig/*.c sig/*.h
+
+norminette command_initializer/*.c command_initializer/*.h  stdio_manager/*.c stdio_manager/*.h  env_variable/*.c env_variable/*.h  allow_function/*.c allow_function/*.h  execute/*.c execute/*.h  objects/*.c objects/*.h  as_tree/*.c as_tree/*.h  exit_code/*.c exit_code/*.h  libft/*.c libft/*.h  builtin/*.c builtin/*.h  sig/*.c sig/*.h | grep Error
