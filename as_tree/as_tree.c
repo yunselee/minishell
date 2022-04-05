@@ -6,7 +6,7 @@
 /*   By: seunghyk <seunghyk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:29:30 by seunghyk          #+#    #+#             */
-/*   Updated: 2022/04/02 17:23:31 by seunghyk         ###   ########.fr       */
+/*   Updated: 2022/04/05 18:13:21 by seunghyk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include "../libft/libft.h"
 #include "as_tree.h"
+#include <stdio.h>
 
 static t_cmd_type	set_before(t_cmd_type *out_before, t_cmd_type cur_type)
 {
@@ -88,5 +89,6 @@ t_node	*init_astree_malloc(t_command *command)
 		root = insert_astree(root, new_node);
 		++i;
 	}
+	print_tree(root);
 	return (root);
 }
