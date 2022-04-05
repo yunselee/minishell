@@ -11,8 +11,8 @@ ifeq ($(DEBUG),true)
 endif
 
 READLINE_HEADER	= -I ./readline/include
-READLINE_FOLDER	= -L ./readline/lib -lreadline -lhistory
 
+READLINE	=  ./readline/libreadline.a ./readline/libhistory.a -lncurses -ltermcap
 
 LIBFT			= ./libft/libft.a
 ALLOW_FUNCTION		= ./allow_function/allow_function.a
@@ -84,8 +84,8 @@ all: $(NAME)
 #  -I $(INCS_DIR)  $(READLINE_HEADER)
 
 # minishell
-$(NAME): $(OBJS) $(LIBFT) $(ALLOW_FUNCTION)
-	$(CC) $(CDEBUG) $(READLINE_FOLDER) $^ -o $@ -g -fsanitize=address
+$(NAME): $(OBJS) $(LIBFT) $(ALLOW_FUNCTION) $(READLINE) 
+	$(CC) $(CDEBUG) $^ -o $@ -g -fsanitize=address
 	
 
 # -I $(INCS_DIR) $(READLINE_HEADER)
@@ -96,7 +96,9 @@ $(OBJS_DIR)/%.o: %.c | $(OBJS_DIR)
 $(OBJS_DIR):
 	@mkdir -p $@
 
-
+$(READLINE) :
+	-c ./readline ./readline/configure
+	$(MAKE) -c ./readline install-static
 # libft
 $(LIBFT):
 	$(MAKE) -C ./libft all
