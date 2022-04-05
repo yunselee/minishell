@@ -84,8 +84,8 @@ all: $(NAME)
 #  -I $(INCS_DIR)  $(READLINE_HEADER)
 
 # minishell
-$(NAME): $(OBJS) $(LIBFT) $(ALLOW_FUNCTION) $(READLINE) 
-	$(CC) $(CDEBUG) $^ -o $@ -g -fsanitize=address
+$(NAME): $(OBJS) $(LIBFT) $(ALLOW_FUNCTION)  
+	$(CC) $(CDEBUG) $(READLINE) $^ -o $@ -g -fsanitize=address
 	
 
 # -I $(INCS_DIR) $(READLINE_HEADER)
@@ -111,6 +111,7 @@ $(ALLOW_FUNCTION) :
 
 # clean, fclean, re
 clean: 
+	$(RM) -r $(OBJS_DIR)
 	$(MAKE) -C ./libft clean
 	$(MAKE) -C ./allow_function clean
 	$(RM) -r $(OBJS_DIR)
