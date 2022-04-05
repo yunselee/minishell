@@ -6,7 +6,7 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:16:25 by yunselee          #+#    #+#             */
-/*   Updated: 2022/04/02 17:16:49 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/04/05 18:04:58 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,14 @@
 #include "sig.h"
 
 #define CHILD 0
-
 #define READ 0
 #define WRITE 1
-
+#define HEREDOC_PROMPT "\e[32m> \e[0m"
 #define HEREDOC_DIR "./.heredoc"
 
 void	wait_pid_and_set_exit_code(pid_t child);
 void	connect_file_to_std(const char *pathname, int path_open_flags, \
-			 int path_open_mode, int std_fd);
+			int path_open_mode, int std_fd);
 void	execute_basic_cmd(t_node *astree);
 void	execute_recursive(t_node *astree);
 void	close_pointer(int pipe_fd[]);
@@ -50,7 +49,6 @@ static void	set_pipe_recursive(t_node *astree)
 		execute_recursive(astree->left);
 		exit(EXIT_SUCCESS);
 	}
-	close(pipe_fd[WRITE]);
 	child[1] = _fork();
 	if (child[1] == CHILD)
 	{
@@ -59,34 +57,47 @@ static void	set_pipe_recursive(t_node *astree)
 		execute_recursive(astree->right);
 		exit(exit_code_get_latest());
 	}
-	close(pipe_fd[READ]), wait_pid_and_set_exit_code(child[0]);
-	wait_pid_and_set_exit_code(child[1]), sig_set();
+	close_pointer(pipe_fd);
+	wait_pid_and_set_exit_code(child[1]);
+	wait_pid_and_set_exit_code(child[0]);
+	sig_set();
+}
+
+static void	exeucte_heredoc_child(const char	*eof)
+{
+	int			fd;
+	char		*line;
+
+	stdio_recover();
+	sig_set_heredoc();
+	fd = _open(HEREDOC_DIR, O_TRUNC | O_WRONLY | O_CREAT, S_IRWXU);
+	line = readline(HEREDOC_PROMPT);
+	if (line == NULL)
+		exit(EXIT_FAILURE);
+	while (ft_strcmp(line, eof) != 0)
+	{
+		write(fd, line, ft_strlen(line));
+		free(line);
+		line = readline(HEREDOC_PROMPT);
+	}
+	free(line);
+	close(fd);
+	exit(EXIT_SUCCESS);
 }
 
 static void	execute_heredoc(t_node *astree)
 {
 	const char	*eof = astree->right->data;
-	const pid_t	child = fork();
-	int			fd;
-	char		*line;
+	pid_t		child;
 
+	sig_disable();
+	child = _fork();
 	if (child == CHILD)
 	{
-		stdio_recover();
-		fd = _open(HEREDOC_DIR, O_TRUNC | O_WRONLY | O_CREAT, S_IRWXU);
-		line = readline("> ");
-		while (ft_strncmp(line, eof, ft_strlen(eof)) \
-			|| ft_strlen(line) != ft_strlen(eof))
-		{
-			ft_putendl_fd(line, fd);
-			free(line);
-			line = readline("> ");
-		}
-		free(line);
-		close(fd);
-		exit(EXIT_SUCCESS);
+		exeucte_heredoc_child(eof);
 	}
 	wait_pid_and_set_exit_code(child);
+	sig_set();
 	connect_file_to_std(HEREDOC_DIR, O_RDONLY, S_IRWXU, STDIN_FILENO);
 }
 
@@ -112,12 +123,16 @@ static void	set_rdr_recursive(t_node *astree)
 	else if (astree->cmd_type == CMD_TYPE_LD_SHIFT)
 	{
 		execute_heredoc(astree);
+		if (exit_code_get_latest() == EXIT_FAILURE)
+			return ;
 	}
 	execute_recursive(astree->left);
 }
 
 void	execute_recursive(t_node *astree)
 {
+	if (astree == NULL)
+		return ;
 	if (astree->cmd_type == CMD_TYPE_PIPE)
 	{
 		set_pipe_recursive(astree);

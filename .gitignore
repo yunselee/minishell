@@ -1,3 +1,5 @@
 *.o
-minishell
 *.a
+*.log
+*.json
+minishell

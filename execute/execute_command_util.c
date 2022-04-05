@@ -6,7 +6,7 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:18:42 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/31 22:39:26 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/04/05 10:51:34 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void	connect_file_to_std(const char *pathname, \
 
 void	close_pointer(int pipe_fd[])
 {
-	close(pipe_fd[0]);
-	close(pipe_fd[1]);
+	_close(pipe_fd[0]);
+	_close(pipe_fd[1]);
 }
 
 bool	is_minishell(const char *arg)

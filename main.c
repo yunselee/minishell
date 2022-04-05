@@ -6,7 +6,7 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:39:02 by seunghyk          #+#    #+#             */
-/*   Updated: 2022/03/31 21:08:51 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/04/05 13:20:11 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 #include "execute/execute.h"
 #include "sig/sig.h"
 #include "allow_function.h"
+
+#define PROMPT "\e[32mPrompt :\e[0m"
 
 static void	register_all_env(const char **envp)
 {
@@ -77,7 +79,7 @@ int	main(int argc, const char **argv, const char **envp)
 	sig_set();
 	while (1)
 	{
-		text = readline("\e[32mPrompt :\e[0m");
+		text = readline(PROMPT);
 		{
 			if (text == NULL)
 				return (EXIT_SUCCESS);
