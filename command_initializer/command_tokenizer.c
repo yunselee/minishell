@@ -6,7 +6,7 @@
 /*   By: seunghyk <seunghyk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:29:58 by seunghyk          #+#    #+#             */
-/*   Updated: 2022/04/02 18:45:52 by seunghyk         ###   ########.fr       */
+/*   Updated: 2022/04/05 19:27:29 by seunghyk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ static char	*init_single_quot_command(char *text, t_command *out_command)
 		p_end = ft_strchr(p_end + 1, '\'');
 	}
 	ft_strlcpy(p_token, text, p_end - text + 1);
-	reinterpret_escape(p_token, false);
 	if (before == '\'' || before == '\"')
 	{
 		ft_strcat(out_command->tokens[out_command->num_token - 2],
@@ -93,7 +92,6 @@ static char	*init_double_quot_command(char *text, t_command *out_command)
 	}
 	ft_strlcpy(p_token, text, p_end - text + 1);
 	reinterpret_env(p_token);
-	reinterpret_escape(p_token, false);
 	if (before == '\'' || before == '\"')
 	{
 		ft_strcat(out_command->tokens[out_command->num_token - 2],
