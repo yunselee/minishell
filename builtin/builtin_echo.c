@@ -6,7 +6,7 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 17:04:06 by yunselee          #+#    #+#             */
-/*   Updated: 2022/04/04 22:17:38 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/04/05 19:08:58 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,11 @@ void	builtin_echo(const char **args)
 
 	i = 1;
 	is_newline = true;
-	if (args[i] != NULL && args[i][0] == '-')
+	while (args[i] != NULL && args[i][0] == '-')
 	{
 		if (in_arg(args[i], ARG))
-		{
 			is_newline = false;
-			i++;
-		}
+		i++;
 	}
 	while (args[i] != NULL)
 	{
