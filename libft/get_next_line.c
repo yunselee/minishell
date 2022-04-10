@@ -30,7 +30,6 @@ static char	*mmalloc(char **line, int size)
 static int	copy_line(char **line, char **str_fd)
 {
 	int		size;
-	int		i;
 	int		ret;
 
 	i = 0;
