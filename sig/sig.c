@@ -6,7 +6,7 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 16:51:35 by yunselee          #+#    #+#             */
-/*   Updated: 2022/04/05 13:35:57 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/04/10 17:56:54 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <stdlib.h>
+#include "exit_code.h"
 
 extern void	rl_replace_line(const char *a, int b);
 
@@ -28,6 +29,7 @@ static void	sig_int(int signal)
 	rl_on_new_line();
 	rl_replace_line("", 0);
 	rl_redisplay();
+	exit_code_set(EXIT_FAILURE);
 }
 
 void	sig_set(void)
