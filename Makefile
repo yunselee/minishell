@@ -1,7 +1,7 @@
 NAME			= minishell
 
 CC				= gcc
-CFLAGS			= -Wall -Werror -Wextra -fsanitize=address
+CFLAGS			= -Wall -Werror -Wextra 
 
 
 #LDFLAGS="$LDFLAGS -fsanitize=address"
@@ -87,7 +87,7 @@ all: $(NAME)
 
 # minishell
 $(NAME): $(OBJS) $(LIBFT) $(ALLOW_FUNCTION) $(READLINE)
-	$(CC) $(CDEBUG) $(RFLAG) $^ -o $@ -g -fsanitize=address
+	$(CC) $(CDEBUG) $(RFLAG) $^ -o $@ -g
 	
 
 # -I $(INCS_DIR) $(READLINE_HEADER)
