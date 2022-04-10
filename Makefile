@@ -12,9 +12,9 @@ endif
 
 READLINE_HEADER	= -I ./readline/include
 
-READLINE	=  ./readline/libreadline.a ./readline/libhistory.a
+READLINE	=  ./readline/libreadline.a ./readline/libhistory.a 
 
-RFLAG	= -lncurses -ltermcap
+RFLAG	= -lncurses -ltermcap -lreadline -lhistory
 
 LIBFT			= ./libft/libft.a
 ALLOW_FUNCTION		= ./allow_function/allow_function.a
