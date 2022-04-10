@@ -6,7 +6,7 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:16:25 by yunselee          #+#    #+#             */
-/*   Updated: 2022/04/10 17:52:59 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/04/10 17:59:55 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static void	exeucte_heredoc_child(const char	*eof)
 	line = readline(HEREDOC_PROMPT);
 	if (line == NULL)
 		exit(EXIT_FAILURE);
-	while (line == NULL && ft_strcmp(line, eof) != 0)
+	while (line != NULL && ft_strcmp(line, eof) != 0)
 	{
 		write(fd, line, ft_strlen(line));
 		write(fd, "\n", 1);
