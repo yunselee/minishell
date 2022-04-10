@@ -27,7 +27,7 @@
 #include "sig/sig.h"
 #include "allow_function.h"
 
-#define PROMPT "\e[32mPrompt :\e[0m"
+#define PROMPT "Prompt :"
 
 static void	register_all_env(const char **envp)
 {
