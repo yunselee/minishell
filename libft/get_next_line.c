@@ -32,7 +32,6 @@ static int	copy_line(char **line, char **str_fd)
 	int		size;
 	int		ret;
 
-	i = 0;
 	size = 0;
 	while ((*str_fd)[size] != '\0' && (*str_fd)[size] != '\n')
 		size++;
