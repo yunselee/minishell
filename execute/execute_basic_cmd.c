@@ -6,7 +6,7 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:38:44 by yunselee          #+#    #+#             */
-/*   Updated: 2022/04/12 15:24:33 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/04/12 15:33:40 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,13 @@ static void	execve_child_process(char **args)
 		p_env_path = ft_split(p_cmd, ':');
 		while (p_env_path[i] != NULL)
 		{
-			p_tmp = ft_strjoin(p_env_path[i], "/");
+			p_tmp = ft_strjoin(p_env_path[i++], "/");
 			p_cmd = ft_strjoin(p_tmp, args[0]);
 			_execve(p_cmd, args, p_envp);
 			_free(p_tmp);
 			_free(p_cmd);
-			i++;
 		}
+		clear_args(p_env_path);
 	}
 	_execve(args[0], args, p_envp);
 	clear_args(p_envp);
