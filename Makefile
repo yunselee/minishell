@@ -3,7 +3,7 @@ NAME			= minishell
 CC				= gcc
 CFLAGS			= -Wall -Werror -Wextra 
 
-
+DFLAGS			= -g -fsanitize=address
 #LDFLAGS="$LDFLAGS -fsanitize=address"
 
 ifeq ($(DEBUG),true)
@@ -14,7 +14,7 @@ READLINE_HEADER	= -I ./readline/include
 
 READLINE	=  ./readline/libreadline.a ./readline/libhistory.a 
 
-RFLAG	= -lncurses -ltermcap -lreadline -lhistory
+RFLAG	= -lncurses -ltermcap -lreadline 
 
 LIBFT			= ./libft/libft.a
 ALLOW_FUNCTION		= ./allow_function/allow_function.a
@@ -87,12 +87,12 @@ all: $(NAME)
 
 # minishell
 $(NAME): $(OBJS) $(LIBFT) $(ALLOW_FUNCTION) $(READLINE)
-	$(CC) $(CDEBUG) $(RFLAG) $^ -o $@ -g
+	$(CC) $(CDEBUG) $(RFLAG) $^ -o $@ $(DFLAGS)
 	
 
 # -I $(INCS_DIR) $(READLINE_HEADER)
 $(OBJS_DIR)/%.o: %.c | $(OBJS_DIR)
-	$(CC) $(CDEBUG) $(CFLAGS) $(INCS_DIR) $(READLINE_HEADER) -c $^ -o $@ -g
+	$(CC) $(CDEBUG) $(CFLAGS) $(INCS_DIR) $(READLINE_HEADER) -c $^ -o $@ $(DFLAGS)
 	
 
 $(OBJS_DIR):
