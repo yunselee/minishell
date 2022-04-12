@@ -6,7 +6,7 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:38:44 by yunselee          #+#    #+#             */
-/*   Updated: 2022/04/10 20:12:43 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/04/12 15:24:33 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,19 @@
 
 bool	is_minishell(const char *arg);
 void	wait_pid_and_set_exit_code(pid_t child);
+
+static void	clear_args(char **args)
+{
+	int	i;
+
+	i = 0;
+	while (args[i] != NULL)
+	{
+		_free(args[i]);
+		++i;
+	}
+	_free(args);
+}
 
 // no return
 static void	execve_child_process(char **args)
@@ -54,6 +67,7 @@ static void	execve_child_process(char **args)
 		}
 	}
 	_execve(args[0], args, p_envp);
+	clear_args(p_envp);
 	printf("%s : command not found\n", args[0]);
 }
 
@@ -99,19 +113,6 @@ static char	**make_args(t_node *astree)
 	}
 	args[i] = NULL;
 	return (args);
-}
-
-static void	clear_args(char **args)
-{
-	int	i;
-
-	i = 0;
-	while (args[i] != NULL)
-	{
-		_free(args[i]);
-		++i;
-	}
-	_free(args);
 }
 
 void	execute_basic_cmd(t_node *astree)
