@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_initializer.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghyk <seunghyk@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:29:50 by seunghyk          #+#    #+#             */
-/*   Updated: 2022/03/29 19:30:12 by seunghyk         ###   ########.fr       */
+/*   Updated: 2022/04/10 20:12:01 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include "command_initializer.h"
-#include "../libft/libft.h"
+#include "libft.h"
 
 static bool	is_open_quot(const char *text)
 {

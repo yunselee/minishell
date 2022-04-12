@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   command_tokenizer.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghyk <seunghyk@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:29:58 by seunghyk          #+#    #+#             */
-/*   Updated: 2022/04/05 19:27:29 by seunghyk         ###   ########.fr       */
+/*   Updated: 2022/04/10 20:12:12 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "command_initializer.h"
-#include "../libft/libft.h"
+#include "libft.h"
 #include <stdio.h>
 
 static char	*init_plain_command(char *text, t_command *out_command)

@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_env.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghyk <seunghyk@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 14:49:57 by yunselee          #+#    #+#             */
-/*   Updated: 2022/04/05 16:42:06 by seunghyk         ###   ########.fr       */
+/*   Updated: 2022/04/10 20:11:05 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../env_variable/env_variable.h"
-#include "../exit_code/exit_code.h"
+#include "env_variable.h"
+#include "exit_code.h"
 #include <stdio.h>
 #include <stdlib.h>
 

@@ -6,14 +6,14 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:29:30 by seunghyk          #+#    #+#             */
-/*   Updated: 2022/04/05 18:14:58 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/04/10 20:10:05 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdbool.h>
 
-#include "../libft/libft.h"
+#include "libft.h"
 #include "as_tree.h"
 #include <stdio.h>
 

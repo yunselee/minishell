@@ -6,12 +6,12 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:30:05 by seunghyk          #+#    #+#             */
-/*   Updated: 2022/04/05 18:24:23 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/04/10 20:12:32 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "../libft/libft.h"
+#include "libft.h"
 #include "env_variable.h"
 #include "exit_code.h"
 

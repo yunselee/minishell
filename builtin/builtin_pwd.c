@@ -6,13 +6,13 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 14:39:24 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/26 19:08:26 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/04/10 20:11:41 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../allow_function/allow_function.h"
+#include "allow_function.h"
 #include <stdlib.h>
-#include "../exit_code/exit_code.h"
+#include "exit_code.h"
 #include <stdio.h>
 
 void	builtin_pwd(void)

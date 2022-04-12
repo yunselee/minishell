@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghyk <seunghyk@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 17:03:30 by yunselee          #+#    #+#             */
-/*   Updated: 2022/04/05 16:31:42 by seunghyk         ###   ########.fr       */
+/*   Updated: 2022/04/10 20:11:33 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdbool.h>
-#include "../exit_code/exit_code.h"
+#include "exit_code.h"
 #include "builtin.h"
-#include "../env_variable/env_variable.h"
-#include "../libft/libft.h"
+#include "env_variable.h"
+#include "libft.h"
 #include <stdio.h>
 
 char	*tokenize(char *str_or_null, const char *delims);

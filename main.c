@@ -6,7 +6,7 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:39:02 by seunghyk          #+#    #+#             */
-/*   Updated: 2022/04/05 13:20:11 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/04/10 20:14:51 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@
 #include <readline/history.h>
 #include <sys/types.h>
 #include <dirent.h>
-#include "libft/libft.h"
-#include "command_initializer/command_initializer.h"
-#include "env_variable/env_variable.h"
-#include "as_tree/as_tree.h"
-#include "stdio_manager/stdio_manager.h"
-#include "execute/execute.h"
-#include "sig/sig.h"
+#include "libft.h"
+#include "command_initializer.h"
+#include "env_variable.h"
+#include "as_tree.h"
+#include "stdio_manager.h"
+#include "execute.h"
+#include "sig.h"
 #include "allow_function.h"
 
 #define PROMPT "Prompt :"

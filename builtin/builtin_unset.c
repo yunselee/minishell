@@ -6,13 +6,13 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:18:43 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/26 17:14:43 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/04/10 20:11:54 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../exit_code/exit_code.h"
+#include "exit_code.h"
 #include "builtin.h"
-#include "../env_variable/env_variable.h"
+#include "env_variable.h"
 #include <stdlib.h>
 
 void	builtin_unset(const char **args)

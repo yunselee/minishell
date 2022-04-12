@@ -6,14 +6,14 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:18:42 by yunselee          #+#    #+#             */
-/*   Updated: 2022/04/05 10:51:34 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/04/10 20:12:56 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdbool.h>
-#include "../allow_function/allow_function.h"
-#include "../exit_code/exit_code.h"
+#include "allow_function.h"
+#include "exit_code.h"
 #include "libft.h"
 
 void	wait_pid_and_set_exit_code(pid_t child)

@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   command_reinterpreter.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghyk <seunghyk@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:29:56 by seunghyk          #+#    #+#             */
-/*   Updated: 2022/04/02 19:00:26 by seunghyk         ###   ########.fr       */
+/*   Updated: 2022/04/10 20:12:08 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "command_initializer.h"
-#include "../env_variable/env_variable.h"
-#include "../libft/libft.h"
+#include "env_variable.h"
+#include "libft.h"
 
 static char	get_escape(char c, bool is_plain)
 {

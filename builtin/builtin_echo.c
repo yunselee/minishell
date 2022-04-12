@@ -6,16 +6,16 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 17:04:06 by yunselee          #+#    #+#             */
-/*   Updated: 2022/04/10 18:09:25 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/04/10 20:10:59 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../exit_code/exit_code.h"
+#include "exit_code.h"
 #include "builtin.h"
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
-#include "../libft/libft.h"
+#include "libft.h"
 
 #define ARG "n"
 

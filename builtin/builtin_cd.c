@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_cd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghyk <seunghyk@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 14:37:35 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/29 19:06:56 by seunghyk         ###   ########.fr       */
+/*   Updated: 2022/04/10 20:10:51 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 #include "env_variable.h"
 #include <unistd.h>
-#include "../allow_function/allow_function.h"
-#include "../exit_code/exit_code.h"
+#include "allow_function.h"
+#include "exit_code.h"
 
 #define HOME "HOME"
 #define OLDPWD "OLDPWD" //=/Users/yunselee/minishell

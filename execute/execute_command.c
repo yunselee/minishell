@@ -6,19 +6,19 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:16:25 by yunselee          #+#    #+#             */
-/*   Updated: 2022/04/10 17:59:55 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/04/10 20:12:51 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
-#include "../exit_code/exit_code.h"
+#include "libft.h"
+#include "exit_code.h"
 #include <fcntl.h>
 #include <unistd.h>
-#include "../allow_function/allow_function.h"
-#include "../as_tree/as_tree.h"
+#include "allow_function.h"
+#include "as_tree.h"
 #include <stdio.h>
 #include <readline/readline.h>
-#include "../stdio_manager/stdio_manager.h"
+#include "stdio_manager.h"
 #include "sig.h"
 
 #define CHILD 0

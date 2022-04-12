@@ -6,20 +6,20 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:38:44 by yunselee          #+#    #+#             */
-/*   Updated: 2022/04/05 18:24:59 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/04/10 20:12:43 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../builtin/builtin.h"
-#include "../libft/libft.h"
-#include "../exit_code/exit_code.h"
+#include "builtin.h"
+#include "libft.h"
+#include "exit_code.h"
 #include <fcntl.h>
 #include <unistd.h>
-#include "../env_variable/env_variable.h"
-#include "../allow_function/allow_function.h"
-#include "../sig/sig.h"
-#include "../as_tree/as_tree.h"
-#include "../sig/sig.h"
+#include "env_variable.h"
+#include "allow_function.h"
+#include "sig.h"
+#include "as_tree.h"
+#include "sig.h"
 #include <stdio.h>
 
 // fork하고 내부에서 처리

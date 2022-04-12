@@ -6,11 +6,11 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:14:02 by yunselee          #+#    #+#             */
-/*   Updated: 2022/03/29 19:20:08 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/04/10 20:13:30 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../allow_function/allow_function.h"
+#include "allow_function.h"
 #include <unistd.h>
 
 static int	*get_back_up_fd(void)

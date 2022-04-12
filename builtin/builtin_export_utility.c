@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_export_utility.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghyk <seunghyk@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 18:36:23 by seunghyk          #+#    #+#             */
-/*   Updated: 2022/04/05 16:43:57 by seunghyk         ###   ########.fr       */
+/*   Updated: 2022/04/10 20:11:28 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "../libft/libft.h"
+#include "libft.h"
 
 static int	partition(char **envs, int left, int right)
 {
